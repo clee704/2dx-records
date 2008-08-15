@@ -1,4 +1,4 @@
-package name.lemonedo.iidx.usrapp;
+package name.lemonedo.iidx.app;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;

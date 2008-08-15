@@ -200,6 +200,8 @@
         return 6;
       case 'AAA':
         return 7;
+      case 'FAILED':
+        return -1;
       case 'NO':
         return 0;
       case 'ASSIST':
@@ -234,7 +236,7 @@
         return 1;
     });
     createComparator('playMode', function (e1, e2) { return toInt(e1) - toInt(e2); });
-    createComparator('difficulty');
+    createComparator('difficulty', function (e1, e2) { return compareValue(e1, e2); });
     createComparator('djLevel', function (e1, e2) { return toInt(e1) - toInt(e2); });
     createComparator('exScore');
     createComparator('scoreRate');
@@ -249,6 +251,7 @@
     createComparator('missCount', function (e1, e2) { return compareValue(e1, e2); });
     createComparator('playCount');
     setOrder('title', 1);
+    setOrder('difficulty', 1);
     setOrder('playMode', 1);
     setOrder('missCount', 1);
   -->

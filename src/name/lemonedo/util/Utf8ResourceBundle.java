@@ -7,9 +7,12 @@ import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 /**
- * Borrowed from http://www.thoughtsabout.net/blog/archives/000044.html.
+ * Borrowed from http://www.thoughtsabout.net/blog/archives/000044.html,
+ * slightly modified.
  */
 public final class Utf8ResourceBundle {
+
+    private Utf8ResourceBundle() {}
 
     public static final ResourceBundle getBundle(String baseName) {
         ResourceBundle bundle = ResourceBundle.getBundle(baseName);
@@ -37,7 +40,8 @@ public final class Utf8ResourceBundle {
     }
 
     private static class Utf8PropertyResourceBundle extends ResourceBundle {
-        PropertyResourceBundle bundle;
+
+        private final PropertyResourceBundle bundle;
 
         private Utf8PropertyResourceBundle(PropertyResourceBundle bundle) {
             this.bundle = bundle;
@@ -59,6 +63,4 @@ public final class Utf8ResourceBundle {
             }
         }
     }
-
-    private Utf8ResourceBundle() {}
 }

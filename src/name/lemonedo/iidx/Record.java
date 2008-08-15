@@ -17,7 +17,8 @@ public class Record {
         CLEAR,
         HARD_CLEAR,
         FULL_COMBO,
-        PERFECT;
+        PERFECT,
+        FAILED;
 
         public String toString() {
             return super.toString().replace("_", " ");

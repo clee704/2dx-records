@@ -1,4 +1,4 @@
-package name.lemonedo.iidx.usrapp;
+package name.lemonedo.iidx.app;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -8,7 +8,7 @@ import name.lemonedo.util.Utf8ResourceBundle;
 public class Messages {
 
     private static final String BUNDLE_NAME =
-            "name.lemonedo.iidx.usrapp.messages";
+            "name.lemonedo.iidx.app.messages";
 
     private static final ResourceBundle RESOURCE_BUNDLE =
             Utf8ResourceBundle.getBundle(BUNDLE_NAME);

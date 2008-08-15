@@ -5,7 +5,7 @@ import java.util.List;
 
 public final class Algorithms {
 
-    public static <T> List<T> findIf(List<T> list,
+    public static <T> List<T> filter(List<T> list,
                                      Method<Boolean, ? super T> pred) {
         List<T> newList = new ArrayList<T>();
         for (T e : list)

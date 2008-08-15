@@ -1,6 +1,6 @@
 package name.lemonedo.iidx.util;
 
-public class NoRecordsToPrintException extends RuntimeException {
+public class NoRecordsToPrintException extends Exception {
 
     public NoRecordsToPrintException() {}
 
