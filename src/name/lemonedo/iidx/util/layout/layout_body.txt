@@ -17,7 +17,7 @@
     td.DA { text-align: center; color: #FF3333; }
     td.old { }
     td.new { color: #ffdd00; }
-    td.graph { text-align: left; font-size: 0px; padding: 0px; background-image: url('graphbg.gif'); background-repeat: repeat-y; }
+    td.graph { text-align: left; font-size: 0px; padding: 0px; background-image: url('graphbg.gif'); background-repeat: repeat-y; height: 8px; }
     img { vertical-align: text-bottom; }
     img.graph { height: 8px; opacity: 0.4; filter: alpha(opacity=40); }
     a { cursor: pointer; }

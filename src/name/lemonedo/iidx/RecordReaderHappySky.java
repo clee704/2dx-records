@@ -63,12 +63,8 @@ public class RecordReaderHappySky extends RecordReader {
       bis1.read(buf1);
       bis2.read(buf2);
       Record r = parseRecord(buf1, buf2, s, m);
-      if (r != null) {
-
-        System.out.print(m + "\t" + s.getTitle() + "\t" + buf1[10]);
-        System.out.println("\t" + r.getClear());
+      if (r != null)
         records.get(m).add(r);
-      }
     }
   }
 
@@ -92,31 +88,30 @@ public class RecordReaderHappySky extends RecordReader {
 
   private Record.Clear parseClear(byte b1, byte b2) {
     switch (b1) {
-    case 0x04:
+    case 004:
+    case 014:
       return Record.Clear.NO_CLEAR;
-    case 0x05:
+    case 005:
+    case 015:
       switch (b2) {
-      case 0x03:
+      case 003:
         return Record.Clear.EASY_CLEAR;
-      case 0x05:
-      case 0x07:
+      case 005:
+      case 007:
         return Record.Clear.CLEAR;
-      case 0x09:
-      case 0x0D:
-      case 0x0F:
+      case 011:
+      case 015:
+      case 017:
         return Record.Clear.HARD_CLEAR;
       default:
         return null;
       }
-    case 0x0C:
-      return Record.Clear.FAILED;
-    case 0x0D:
-      return Record.Clear.EASY_CLEAR;
-    case 0x24:
-    case 0x25:
+    case 044:
+    case 045:
+    case 055:
       return Record.Clear.FULL_COMBO;
-    case 0x26:
-    case 0x27:
+    case 046:
+    case 047:
       return Record.Clear.PERFECT;
     default:
       return null;
