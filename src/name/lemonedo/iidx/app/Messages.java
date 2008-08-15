@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import name.lemonedo.util.Utf8ResourceBundle;
 
-public class Messages {
+class Messages {
 
     private static final String BUNDLE_NAME =
             "name.lemonedo.iidx.app.messages";

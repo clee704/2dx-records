@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecordReaderHappySky extends RecordReader {
+class RecordReaderHappySky extends RecordReader {
 
   public RecordReaderHappySky(File saveFile) {
     super(saveFile, SongListReader.read("songlist/happysky.txt"));

@@ -47,10 +47,9 @@ import name.lemonedo.iidx.RecordReaderFactory;
 import name.lemonedo.iidx.Version;
 import name.lemonedo.iidx.util.HtmlPrinter;
 import name.lemonedo.iidx.util.NoRecordsToPrintException;
-import edu.stanford.ejalbert.BrowserLauncher;
-import edu.stanford.ejalbert.exceptionhandler.BrowserLauncherErrorHandler;
+import name.lemonedo.util.Method;
 
-public class RecordExtracterGUI {
+class RecordExtracterGUI {
 
   private final JFrame frame;
   private final JFileChooser opener;
@@ -67,10 +66,9 @@ public class RecordExtracterGUI {
   private final JCheckBox daBox;
 
   private final HtmlPrinter printer;
-  private BrowserLauncher browserLauncher;
+  private final Object browserLauncher;
 
   public RecordExtracterGUI() {
-    printer = new HtmlPrinter();
     frame = new JFrame(getString("TITLE"));
     opener = new JFileChooser();
     opener.setFileFilter(new FileNameExtensionFilter(getString("PSU_DESC"),
@@ -201,14 +199,8 @@ public class RecordExtracterGUI {
       }
     });
 
-    try {
-      browserLauncher = new BrowserLauncher(null,
-          new BrowserLauncherErrorHandler() {
-            public void handleException(Exception e) {
-              showErrorDialog(getString("E_OPEN_PAGE") + getString("SITE_URL"));
-            }
-          });
-    } catch (Exception e) {}
+    printer = new HtmlPrinter();
+    browserLauncher = createBrowserLauncher();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setResizable(false);
     frame.pack();
@@ -222,10 +214,11 @@ public class RecordExtracterGUI {
   }
 
   private void openDistributionSite() {
-    if (browserLauncher != null)
-      browserLauncher.openURLinBrowser(getString("SITE_URL"));
-    else
+    if (browserLauncher == null)
       showErrorDialog(getString("E_OPEN_PAGE") + getString("SITE_URL"));
+    else
+      ((BrowserLauncherWrapper) browserLauncher).openURLinBrowser(getString(
+          "SITE_URL"));
   }
 
   private void getPsuFile() {
@@ -313,6 +306,22 @@ public class RecordExtracterGUI {
       e.printStackTrace();
       showErrorDialog(getString("E_FAILED"));
       return;
+    }
+  }
+
+  private Object createBrowserLauncher() {
+    try {
+      return new BrowserLauncherWrapper(new Method<Void, Exception>() {
+        public Void eval(Exception e) {
+          showErrorDialog(getString("E_OPEN_PAGE") + getString("SITE_URL"));
+          return null;
+        }
+      });
+    } catch (Exception e) {
+      return null;
+    } catch (Error e) {
+      showErrorDialog(getString("E_NO_LIB"));
+      return null;
     }
   }
 
