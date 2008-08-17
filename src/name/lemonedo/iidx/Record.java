@@ -19,13 +19,6 @@ public class Record {
     }
   }
 
-  private static class CommonValue extends Value {
-
-    public CommonValue(int value) {
-      super(value, 0, 9999);
-    }
-  }
-
   public static final Comparator<Record> TITLE_ORDER;
   public static final Comparator<Record> DIFFICULTY_ORDER;
 
@@ -69,7 +62,7 @@ public class Record {
   private final Value missCount;
   private final Value playCount;
 
-  public Record(Song song, PlayMode playMode, DjLevel djLevel, Clear clear,
+  private Record(Song song, PlayMode playMode, DjLevel djLevel, Clear clear,
                 int exScore, int just, int great, int good, int bad, int poor,
                 int maxCombo, int missCount, int playCount) {
     if (song.hasAnotherSong() &&
@@ -81,15 +74,23 @@ public class Record {
     this.playMode = playMode;
     this.djLevel = djLevel;
     this.clear = clear;
-    this.exScore = new CommonValue(exScore);
-    this.just = new CommonValue(just);
-    this.great = new CommonValue(great);
-    this.good = new CommonValue(good);
-    this.bad = new CommonValue(bad);
-    this.poor = new CommonValue(poor);
-    this.maxCombo = new CommonValue(maxCombo);
-    this.missCount = new CommonValue(missCount);
-    this.playCount = new CommonValue(playCount);
+    this.exScore = createCommonValue(exScore);
+    this.just = createCommonValue(just);
+    this.great = createCommonValue(great);
+    this.good = createCommonValue(good);
+    this.bad = createCommonValue(bad);
+    this.poor = createCommonValue(poor);
+    this.maxCombo = createCommonValue(maxCombo);
+    this.missCount = createCommonValue(missCount);
+    this.playCount = createCommonValue(playCount);
+  }
+
+  public static Builder newBuilder() {
+    return new Builder();
+  }
+
+  private Value createCommonValue(int val) {
+    return Value.create(val, 1, 9999);
   }
 
   public Song getSong() {
@@ -169,5 +170,96 @@ public class Record {
     return String.format(TO_STRING_FORMAT, song.getTitle(), playMode, djLevel,
         clear, exScore, maxCombo, missCount, playCount, totalNotes, just,
         great, good, bad, poor);
+  }
+
+  public static class Builder {
+
+    private Song song;
+    private PlayMode playMode;
+    private DjLevel djLevel;
+    private Clear clear;
+    private int exScore;
+    private int just;
+    private int great;
+    private int good;
+    private int bad;
+    private int poor;
+    private int maxCombo;
+    private int missCount;
+    private int playCount;
+
+    private Builder() {}
+
+    public Record build() {
+      if (song == null || playMode == null || djLevel == null || clear == null)
+        throw new IllegalStateException();
+      return new Record(song, playMode, djLevel, clear, exScore, just, great,
+          good, bad, poor, maxCombo, missCount, playCount);
+    }
+
+    public Builder song(Song val) {
+      song = val;
+      return this;
+    }
+
+    public Builder playMode(PlayMode val) {
+      playMode = val;
+      return this;
+    }
+
+    public Builder djLevel(DjLevel val) {
+      djLevel = val;
+      return this;
+    }
+
+    public Builder clear(Clear val) {
+      clear = val;
+      return this;
+    }
+
+    public Builder exScore(int val) {
+      exScore = val;
+      return this;
+    }
+
+    public Builder just(int val) {
+      just = val;
+      return this;
+    }
+
+    public Builder great(int val) {
+      great = val;
+      return this;
+    }
+
+    public Builder good(int val) {
+      good = val;
+      return this;
+    }
+
+    public Builder bad(int val) {
+      bad = val;
+      return this;
+    }
+
+    public Builder poor(int val) {
+      poor = val;
+      return this;
+    }
+
+    public Builder maxCombo(int val) {
+      maxCombo = val;
+      return this;
+    }
+
+    public Builder missCount(int val) {
+      missCount = val;
+      return this;
+    }
+
+    public Builder playCount(int val) {
+      playCount = val;
+      return this;
+    }
   }
 }

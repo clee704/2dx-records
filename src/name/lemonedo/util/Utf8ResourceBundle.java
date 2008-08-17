@@ -12,55 +12,50 @@ import java.util.ResourceBundle;
  */
 public final class Utf8ResourceBundle {
 
-    private Utf8ResourceBundle() {}
+  private Utf8ResourceBundle() {}
 
-    public static final ResourceBundle getBundle(String baseName) {
-        ResourceBundle bundle = ResourceBundle.getBundle(baseName);
-        return createUtf8PropertyResourceBundle(bundle);
+  public static ResourceBundle getBundle(String baseName) {
+    return filter(ResourceBundle.getBundle(baseName));
+  }
+
+  public static ResourceBundle getBundle(String baseName, Locale locale) {
+    return filter(ResourceBundle.getBundle(baseName, locale));
+  }
+
+  public static ResourceBundle getBundle(String baseName, Locale locale,
+                                         ClassLoader loader) {
+    return filter(ResourceBundle.getBundle(baseName, locale, loader));
+  }
+
+  private static ResourceBundle filter(ResourceBundle bundle) {
+    if (!(bundle instanceof PropertyResourceBundle))
+      return bundle;
+    return new Utf8PropertyResourceBundle((PropertyResourceBundle) bundle);
+  }
+
+  private static class Utf8PropertyResourceBundle extends ResourceBundle {
+
+    private final PropertyResourceBundle bundle;
+
+    private Utf8PropertyResourceBundle(PropertyResourceBundle bundle) {
+      this.bundle = bundle;
     }
 
-    public static final ResourceBundle getBundle(String baseName,
-                                                 Locale locale) {
-        ResourceBundle bundle = ResourceBundle.getBundle(baseName, locale);
-        return createUtf8PropertyResourceBundle(bundle);
+    @Override
+    public Enumeration<String> getKeys() {
+      return bundle.getKeys();
     }
 
-    public static ResourceBundle getBundle(String baseName, Locale locale,
-                                           ClassLoader loader) {
-        ResourceBundle bundle = ResourceBundle.getBundle(baseName, locale,
-                loader);
-        return createUtf8PropertyResourceBundle(bundle);
+    @Override
+    protected Object handleGetObject(String key) {
+      String value = (String) bundle.handleGetObject(key);
+      if (value == null)
+        return null;
+      try {
+        return new String(value.getBytes("ISO-8859-1"), "UTF-8");
+      } catch (UnsupportedEncodingException e) {
+        throw new RuntimeException("UTF-8 is unsupported", e);
+      }
     }
-
-    private static ResourceBundle createUtf8PropertyResourceBundle(
-                                                   ResourceBundle bundle) {
-        if (!(bundle instanceof PropertyResourceBundle))
-            return bundle;
-        return new Utf8PropertyResourceBundle((PropertyResourceBundle) bundle);
-    }
-
-    private static class Utf8PropertyResourceBundle extends ResourceBundle {
-
-        private final PropertyResourceBundle bundle;
-
-        private Utf8PropertyResourceBundle(PropertyResourceBundle bundle) {
-            this.bundle = bundle;
-        }
-
-        public Enumeration<String> getKeys() {
-            return bundle.getKeys();
-        }
-
-        protected Object handleGetObject(String key) {
-            String value = (String) bundle.handleGetObject(key);
-            if (value == null)
-                return null;
-            try {
-                return new String(value.getBytes("ISO-8859-1"), "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                // Shouldn't fail - but should we still add logging message?
-                return null;
-            }
-        }
-    }
+  }
 }

@@ -16,7 +16,7 @@ class UpdateChecker {
   private static final String REGEXP_2 =
       "[^<>]*<p[^<>]*>" + VERSION + ".*";
 
-  public static boolean check() throws IOException {
+  static boolean check() throws IOException {
     Scanner sc = null;
     try {
       URLConnection conn = new URL(UPDATE_CHECK_URL).openConnection();

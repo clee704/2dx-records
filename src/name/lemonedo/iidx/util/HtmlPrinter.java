@@ -17,7 +17,7 @@ import name.lemonedo.iidx.Record;
 import name.lemonedo.iidx.Song;
 import name.lemonedo.iidx.Version;
 import name.lemonedo.util.Algorithms;
-import name.lemonedo.util.Method;
+import name.lemonedo.util.UnaryPredicate;
 
 public class HtmlPrinter {
 
@@ -284,7 +284,7 @@ public class HtmlPrinter {
     }
   }
 
-  private static class Cleared implements Method<Boolean, Record> {
+  private static class Cleared implements UnaryPredicate<Record> {
     public Boolean eval(Record e) {
       switch (e.getClear()) {
       case NO_PLAY:

@@ -1,7 +1,5 @@
 package name.lemonedo.iidx;
 
-import static name.lemonedo.iidx.Version.HAPPY_SKY;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,9 +10,8 @@ import java.util.List;
 
 class RecordReaderHappySky extends RecordReader {
 
-  public RecordReaderHappySky(File saveFile) {
-    super(saveFile, SongListXmlParser.parse("songlist/happysky.xml"), 92,
-        HAPPY_SKY);
+  RecordReaderHappySky(File saveFile) {
+    super(saveFile, SongListReader.read("happysky.txt"), Version.HAPPY_SKY);
   }
 
   @Override
@@ -62,31 +59,32 @@ class RecordReaderHappySky extends RecordReader {
                           PlayMode m) throws IOException {
     byte[] buf1 = new byte[26];
     byte[] buf2 = new byte[2];
-    for (int i = 1; i <= entrySize; i++) {
+    for (Song s : songList) {
       bis1.read(buf1);
       bis2.read(buf2);
-      Record r = parseRecord(buf1, buf2, songList.get(i), m);
+      Record r = parseRecord(buf1, buf2, s, m);
       if (r != null)
         records.get(m).add(r);
     }
   }
 
-  private Record parseRecord(byte[] b1, byte[] b2, Song song, PlayMode m) {
+  private Record parseRecord(byte[] b1, byte[] b2, Song song, PlayMode mode) {
     if (b1[20] == 9)
       return null;
-    Record.DjLevel djl = Record.DjLevel.values()[b1[20] & 0x0F];
-    Record.Clear clear = parseClear(b1[18], b1[21]);
-    int exScore = ((b1[15] & 0xFF) << 8) + (b1[14] & 0xFF);
-    int maxCombo = ((b1[17] & 0xFF) << 8) + (b1[16] & 0xFF);
-    int missCount = ((b1[25] & 0xFF) << 8) + (b1[24] & 0xFF);
-    int playCount = ((b2[1] & 0xFF) << 8) + (b2[0] & 0xFF);
-    int just = ((b1[1] & 0xFF) << 8) + (b1[0] & 0xFF);
-    int great = ((b1[3] & 0xFF) << 8) + (b1[2] & 0xFF);
-    int good = ((b1[5] & 0xFF) << 8) + (b1[4] & 0xFF);
-    int bad = ((b1[7] & 0xFF) << 8) + (b1[6] & 0xFF);
-    int poor = ((b1[9] & 0xFF) << 8) + (b1[8] & 0xFF);
-    return new Record(song, m, djl, clear, exScore, just, great, good, bad,
-        poor, maxCombo, missCount, playCount);
+    Record.Builder builder = Record.newBuilder();
+    builder.song(song).playMode(mode);
+    builder.djLevel(Record.DjLevel.values()[b1[20] & 0x0F]);
+    builder.clear(parseClear(b1[18], b1[21]));
+    builder.exScore(((b1[15] & 0xFF) << 8) + (b1[14] & 0xFF));
+    builder.maxCombo(((b1[17] & 0xFF) << 8) + (b1[16] & 0xFF));
+    builder.missCount(((b1[25] & 0xFF) << 8) + (b1[24] & 0xFF));
+    builder.playCount(((b2[1] & 0xFF) << 8) + (b2[0] & 0xFF));
+    builder.just(((b1[1] & 0xFF) << 8) + (b1[0] & 0xFF));
+    builder.great(((b1[3] & 0xFF) << 8) + (b1[2] & 0xFF));
+    builder.good(((b1[5] & 0xFF) << 8) + (b1[4] & 0xFF));
+    builder.bad(((b1[7] & 0xFF) << 8) + (b1[6] & 0xFF));
+    builder.poor(((b1[9] & 0xFF) << 8) + (b1[8] & 0xFF));
+    return builder.build();
   }
 
   private Record.Clear parseClear(byte b1, byte b2) {

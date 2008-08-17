@@ -8,7 +8,7 @@ public class Value {
   private final int min;
   private final int max;
 
-  protected Value(int value, int min, int max) {
+  private Value(int value, int min, int max) {
     this.value = value;
     this.min = min;
     this.max = max;
@@ -30,6 +30,8 @@ public class Value {
   }
 
   public int toInt() {
+    if (isUndefined())
+      throw new IllegalStateException("undefined");
     return value;
   }
 

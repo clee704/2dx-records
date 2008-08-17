@@ -47,7 +47,7 @@ import name.lemonedo.iidx.RecordReaderFactory;
 import name.lemonedo.iidx.Version;
 import name.lemonedo.iidx.util.HtmlPrinter;
 import name.lemonedo.iidx.util.NoRecordsToPrintException;
-import name.lemonedo.util.Method;
+import name.lemonedo.util.UnaryMethod;
 
 class RecordExtracterGUI {
 
@@ -68,7 +68,7 @@ class RecordExtracterGUI {
   private final HtmlPrinter printer;
   private final Object browserLauncher;
 
-  public RecordExtracterGUI() {
+  RecordExtracterGUI() {
     frame = new JFrame(getString("TITLE"));
     opener = new JFileChooser();
     opener.setFileFilter(new FileNameExtensionFilter(getString("PSU_DESC"),
@@ -329,7 +329,7 @@ class RecordExtracterGUI {
 
   private Object createBrowserLauncher() {
     try {
-      return new BrowserLauncherWrapper(new Method<Void, Exception>() {
+      return new BrowserLauncherWrapper(new UnaryMethod<Void, Exception>() {
         public Void eval(Exception e) {
           showErrorDialog(getString("E_OPEN_PAGE") + getString("SITE_URL"));
           return null;

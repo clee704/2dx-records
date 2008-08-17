@@ -7,7 +7,6 @@ public class Song {
   private static final String TO_STRING_FORMAT = "GENRE: %s, TITLE: %s, ARTIS" +
       "T: %s";
 
-  private final int id;
   private final String genre;
   private final String title;
   private final String artist;
@@ -19,10 +18,9 @@ public class Song {
 
   private final Song another;
 
-  private Song(int id, String genre, String title, String artist, String bpm,
+  private Song(String genre, String title, String artist, String bpm,
                boolean oldSong, EnumMap<PlayMode, Value> difficulties,
                EnumMap<PlayMode, Value> numNotes, Song another) {
-    this.id = id;
     this.genre = genre;
     this.title = title;
     this.artist = artist;
@@ -35,10 +33,6 @@ public class Song {
 
   public static Builder newBuilder() {
     return new Builder();
-  }
-
-  public int getId() {
-    return id;
   }
 
   public String getGenre() {
@@ -84,7 +78,6 @@ public class Song {
 
   public static class Builder {
 
-    private int id = -1;
     private String genre;
     private String title;
     private String artist;
@@ -104,16 +97,10 @@ public class Song {
     }
 
     public Song build() {
-      if (id == -1 || genre == null || title == null || artist == null ||
-            bpm == null)
+      if (genre == null || title == null || artist == null || bpm == null)
         throw new IllegalStateException();
-      return new Song(id, genre, title, artist, bpm, oldSong, difficulties,
+      return new Song(genre, title, artist, bpm, oldSong, difficulties,
           numNotes, another);
-    }
-
-    public Builder id(int val) {
-      id = val;
-      return this;
     }
 
     public Builder genre(String val) {

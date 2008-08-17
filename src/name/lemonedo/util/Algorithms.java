@@ -5,12 +5,13 @@ import java.util.List;
 
 public final class Algorithms {
 
-    public static <T> List<T> filter(List<T> list,
-                                     Method<Boolean, ? super T> pred) {
-        List<T> newList = new ArrayList<T>();
-        for (T e : list)
-            if (pred.eval(e))
-                newList.add(e);
-        return newList;
-    }
+  private Algorithms() {}
+
+  public static <T> List<T> filter(List<T> list, UnaryPredicate<? super T> p) {
+    List<T> filtered = new ArrayList<T>();
+    for (T e : list)
+      if (p.eval(e))
+        filtered.add(e);
+    return filtered;
+  }
 }
