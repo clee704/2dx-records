@@ -3,7 +3,7 @@
     <table border="0" cellspacing="1" cellpadding="3">
       <tr class="label">
         <th><a onclick="sort('%1$s', 'title');">TITLE</a> <small><a onclick="sort('%1$s', 'oldSong');">(NEW/OLD)</a></small></th>
-        <th><a onclick="sort('%1$s', 'playMode');">PM</a></th>
+        <th><a onclick="sort('%1$s', 'playMode');">M</a></th>
         <th><a onclick="sort('%1$s', 'difficulty');">DIFF</a></th>
         <th><a onclick="sort('%1$s', 'djLevel');">DJL</a></th>
         <th class="ex"><a onclick="sort('%1$s', 'exScore');">EX SCORE</a> <small><a onclick="sort('%1$s', 'scoreRate');">(SCORE RATE)</a></small></th>
@@ -14,9 +14,9 @@
         <th class="notes"><a onclick="sort('%1$s', 'bad');">BAD</a></th>
         <th class="notes"><a onclick="sort('%1$s', 'poor');">POOR</a></th>
         <th><a onclick="sort('%1$s', 'clear');">CLEAR</a></th>
-        <th><a onclick="sort('%1$s', 'maxCombo');">MX</a></th>
-        <th><a onclick="sort('%1$s', 'missCount');">MC</a></th>
-        <th><a onclick="sort('%1$s', 'playCount');">PC</a></th>
+        <th><a onclick="sort('%1$s', 'maxCombo');">COMBO</a></th>
+        <th><a onclick="sort('%1$s', 'missCount');">MISS</a></th>
+        <th><a onclick="sort('%1$s', 'playCount');">PLAY</a></th>
       </tr>
 %2$s    </table>
   </div>

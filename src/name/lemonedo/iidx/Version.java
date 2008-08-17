@@ -6,6 +6,16 @@ public enum Version {
 
   HAPPY_SKY, DISTORTED, GOLD;
 
+  /**
+   * Returns a <code>Version</code> which corresponds with the specified save
+   * file, or <code>null</code> if the file is not of one of the supported
+   * versions.
+   * 
+   * @param saveFile the save file
+   * @return a <code>Version</code> which corresponds with the specified save
+   *         file, or <code>null</code> if the file is not of one of the
+   *         supported versions.
+   */
   public static Version getVersion(File saveFile) {
     long length = saveFile.length();
     if (length == 418816)

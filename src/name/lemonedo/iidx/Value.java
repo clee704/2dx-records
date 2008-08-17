@@ -2,22 +2,31 @@ package name.lemonedo.iidx;
 
 public class Value {
 
+  public static final Value UNDEFINED = new Value(-1, 0, 0);
+
   private final int value;
   private final int min;
   private final int max;
 
-  public Value(int value, int min, int max) {
+  protected Value(int value, int min, int max) {
     this.value = value;
     this.min = min;
     this.max = max;
   }
 
+  public static Value create(int value, int min, int max) {
+    if (value < min || value > max)
+      return UNDEFINED;
+    else
+      return new Value(value, min, max);
+  }
+
   public boolean isDefined() {
-    return value >= min && value <= max;
+    return !isUndefined();
   }
 
   public boolean isUndefined() {
-    return !isDefined();
+    return this == UNDEFINED || value < min || value > max;
   }
 
   public int toInt() {

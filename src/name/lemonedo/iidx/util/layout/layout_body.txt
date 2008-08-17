@@ -7,6 +7,7 @@
     body { font-size: 15px; color: #ffffff; background-color: #000000; }
     tr { text-align: right; background-color: #%5$s; }
     tr.label { background-color: #%6$s; }
+    th { font-size: 13px; }
     th.ex { width: 200px; }
     th.notes { width: 48px; }
     td.SN { text-align: center; color: #0099FF; }
@@ -27,17 +28,15 @@
   <h2>CS %1$s Records</h2>
 %2$s  <h4>Abbreviations in Records (all images are from http://iidx.cc/cs)</h4>
   <ul>
-    <li>PM: Play Mode</li>
+    <li>M: Play Mode</li>
     <li>DIFF: Difficulty</li>
     <li>DJL: DJ Level</li>
-
-    <li>MX: Max Combo</li>
-    <li>MC: Miss Count</li>
-    <li>PC: Play Count</li>
+    <li>COMBO: Max Combo</li>
+    <li>MISS: Miss Count</li>
+    <li>PLAY: Play Count</li>
     <li>ASSIST: Assist Clear</li>
     <li><img src="easy.gif" alt="EASY">: Easy Clear</li>
     <li><img src="hard.gif" alt="HARD">: Hard Clear</li>
-
     <li><img src="fc.png" alt="FC">: Full Combo</li>
     <li><img src="pf.png" alt="PERFECT">: Perfect</li>
     <li><img src="a.png" alt="A">: DJ Level A</li>

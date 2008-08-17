@@ -1,0 +1,1732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE songlist [
+  <!ELEMENT songlist (song, (song|another_song)*)>
+  <!ELEMENT song (artist, title, genre, bpm, modes)>
+  <!ELEMENT artist (#PCDATA)>
+  <!ELEMENT title (#PCDATA)>
+  <!ELEMENT genre (#PCDATA)>
+  <!ELEMENT bpm (#PCDATA)>
+  <!ELEMENT modes (single, double)>
+  <!ELEMENT single (normal?, hyper?, another?)>
+  <!ELEMENT double (normal?, hyper?, another?)>
+  <!ELEMENT normal (diff, notes)>
+  <!ELEMENT hyper (diff, notes)>
+  <!ELEMENT another (diff, notes)>
+  <!ELEMENT diff (#PCDATA)>
+  <!ELEMENT notes (#PCDATA)>
+  <!ATTLIST song id ID #REQUIRED>
+  <!ATTLIST song age (old|new) "new">
+  <!ATTLIST song another_id IDREF #IMPLIED>
+  <!ELEMENT another_song (artist, title, genre, bpm, modes)>
+  <!ATTLIST another_song id ID #REQUIRED>
+  <!ATTLIST another_song age (old|new) "new">
+  <!ATTLIST another_song original_id IDREF #REQUIRED>
+]>
+<songlist>
+<song id="N13001">
+  <artist>ＴЁЯＲＡ</artist>
+  <title>ALFARSHEAR 双神威に廻る夢</title>
+  <genre>HYPER J-POP SEVEN</genre>
+  <bpm>170</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>548</notes></normal>
+      <hyper><diff>7</diff><notes>838</notes></hyper>
+      <another><diff>10</diff><notes>1049</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>548</notes></normal>
+      <hyper><diff>9</diff><notes>838</notes></hyper>
+      <another><diff>10</diff><notes>1043</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13002">
+  <artist>Zektbach</artist>
+  <title>Apocalypse ～dirge of swans～</title>
+  <genre>ORATORIO</genre>
+  <bpm>170</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>510</notes></normal>
+      <hyper><diff>9</diff><notes>921</notes></hyper>
+      <another><diff>10</diff><notes>1214</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>480</notes></normal>
+      <hyper><diff>9</diff><notes>981</notes></hyper>
+      <another><diff>11</diff><notes>1270</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13003">
+  <artist>teranoid &amp; MC Natsack</artist>
+  <title>ay carumba!!!!</title>
+  <genre>NUSTYLE GABBA</genre>
+  <bpm>180</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>520</notes></normal>
+      <hyper><diff>9</diff><notes>805</notes></hyper>
+      <another><diff>10</diff><notes>975</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>520</notes></normal>
+      <hyper><diff>10</diff><notes>820</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13004">
+  <artist>S.S.D.FANTASICA feat. Naomi Koizumi</artist>
+  <title>BALLAD THE FEATHERS</title>
+  <genre>CELTIC REEL</genre>
+  <bpm>132</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>367</notes></normal>
+      <hyper><diff>6</diff><notes>554</notes></hyper>
+      <another><diff>8</diff><notes>64</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>357</notes></normal>
+      <hyper><diff>7</diff><notes>560</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13005">
+  <artist>DJ YOSHITAKA</artist>
+  <title>Bloody Tears (IIDX EDITION)</title>
+  <genre>HARD RENAISSANCE</genre>
+  <bpm>170</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>574</notes></normal>
+      <hyper><diff>9</diff><notes>1012</notes></hyper>
+      <another><diff>10</diff><notes>1094</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>574</notes></normal>
+      <hyper><diff>10</diff><notes>1009</notes></hyper>
+      <another><diff>11</diff><notes>1280</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13006">
+  <artist>小野秀幸</artist>
+  <title>bluemoon</title>
+  <genre>LATIN HORNS GROOVE</genre>
+  <bpm>140</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>292</notes></normal>
+      <hyper><diff>7</diff><notes>867</notes></hyper>
+      <another><diff>10</diff><notes>1174</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>473</notes></normal>
+      <hyper><diff>10</diff><notes>961</notes></hyper>
+      <another><diff>11</diff><notes>1207</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13007">
+  <artist>Y&amp;Co.</artist>
+  <title>BOOM BOOM DISCO NIGHT</title>
+  <genre>EUROBEAT</genre>
+  <bpm>155</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>520</notes></normal>
+      <hyper><diff>8</diff><notes>938</notes></hyper>
+      <another><diff>10</diff><notes>1151</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>520</notes></normal>
+      <hyper><diff>9</diff><notes>927</notes></hyper>
+      <another><diff>10</diff><notes>1148</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13008">
+  <artist>Remixed by Orange Lounge</artist>
+  <title>BREAK OUT</title>
+  <genre>LOUNGE HOUSE</genre>
+  <bpm>129</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>352</notes></normal>
+      <hyper><diff>7</diff><notes>642</notes></hyper>
+      <another><diff>9</diff><notes>888</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>352</notes></normal>
+      <hyper><diff>7</diff><notes>641</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13009">
+  <artist>SADA</artist>
+  <title>Broadbanded</title>
+  <genre>TRANCE</genre>
+  <bpm>140</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>454</notes></normal>
+      <hyper><diff>8</diff><notes>726</notes></hyper>
+      <another><diff>11</diff><notes>1019</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>436</notes></normal>
+      <hyper><diff>10</diff><notes>727</notes></hyper>
+      <another><diff>11</diff><notes>899</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13010">
+  <artist>佐々木博史</artist>
+  <title>Concertino in Blue</title>
+  <genre>PROGRESSIVE</genre>
+  <bpm>103-155</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>460</notes></normal>
+      <hyper><diff>10</diff><notes>915</notes></hyper>
+      <another><diff>12</diff><notes>1311</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>486</notes></normal>
+      <hyper><diff>10</diff><notes>972</notes></hyper>
+      <another><diff>12</diff><notes>1425</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13011">
+  <artist>朱雀</artist>
+  <title>CONTRACT</title>
+  <genre>SUBLIME TECHNO</genre>
+  <bpm>180</bpm>
+  <modes>
+    <single>
+      <normal><diff>8</diff><notes>648</notes></normal>
+      <hyper><diff>10</diff><notes>863</notes></hyper>
+      <another><diff>11</diff><notes>1056</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>607</notes></normal>
+      <hyper><diff>10</diff><notes>856</notes></hyper>
+      <another><diff>12</diff><notes>1050</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13012">
+  <artist>Shoichiro Hirata</artist>
+  <title>Crazy K.I.N.O.</title>
+  <genre>MIXTURE</genre>
+  <bpm>145</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>435</notes></normal>
+      <hyper><diff>7</diff><notes>596</notes></hyper>
+      <another><diff>9</diff><notes>836</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>436</notes></normal>
+      <hyper><diff>8</diff><notes>605</notes></hyper>
+      <another><diff>11</diff><notes>996</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13013">
+  <artist>DJ MURASAME</artist>
+  <title>D.C.fish</title>
+  <genre>TECHNO</genre>
+  <bpm>155</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>513</notes></normal>
+      <hyper><diff>9</diff><notes>998</notes></hyper>
+      <another><diff>11</diff><notes>1178</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>505</notes></normal>
+      <hyper><diff>8</diff><notes>888</notes></hyper>
+      <another><diff>11</diff><notes>1228</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13014">
+  <artist>NAOKI &amp; Tatsh</artist>
+  <title>DEEP ROAR</title>
+  <genre>SUPER RAVE BEAT</genre>
+  <bpm>165</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>503</notes></normal>
+      <hyper><diff>7</diff><notes>726</notes></hyper>
+      <another><diff>9</diff><notes>976</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>503</notes></normal>
+      <hyper><diff>7</diff><notes>721</notes></hyper>
+      <another><diff>9</diff><notes>969</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13015">
+  <artist>Tatsh feat. Junko Hirata &amp; Sayaka Minami</artist>
+  <title>Double♡♡Loving Heart</title>
+  <genre>J-POP</genre>
+  <bpm>138</bpm>
+  <modes>
+    <single>
+      <normal><diff>3</diff><notes>292</notes></normal>
+      <hyper><diff>6</diff><notes>671</notes></hyper>
+      <another><diff>9</diff><notes>909</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>393</notes></normal>
+      <hyper><diff>7</diff><notes>730</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13016">
+  <artist>Mr.T</artist>
+  <title>DUE TOMORROW</title>
+  <genre>TECHNO</genre>
+  <bpm>100-400</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>470</notes></normal>
+      <hyper><diff>9</diff><notes>791</notes></hyper>
+      <another><diff>12</diff><notes>1073</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>470</notes></normal>
+      <hyper><diff>10</diff><notes>791</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13017">
+  <artist>Mr.T plus H</artist>
+  <title>Enjoy your life</title>
+  <genre>ELECTRONICA</genre>
+  <bpm>160</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>348</notes></normal>
+      <hyper><diff>6</diff><notes>554</notes></hyper>
+      <another><diff>8</diff><notes>738</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>348</notes></normal>
+      <hyper><diff>6</diff><notes>554</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13018">
+  <artist>K-MASERA</artist>
+  <title>EURO-ROMANCE</title>
+  <genre>80's TECHNO</genre>
+  <bpm>161</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>497</notes></normal>
+      <hyper><diff>8</diff><notes>933</notes></hyper>
+      <another><diff>10</diff><notes>1056</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>494</notes></normal>
+      <hyper><diff>8</diff><notes>893</notes></hyper>
+      <another><diff>11</diff><notes>1363</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13019">
+  <artist>玄武</artist>
+  <title>Ganymede</title>
+  <genre>ESOTERIC SLOWCORE</genre>
+  <bpm>72-82</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>571</notes></normal>
+      <hyper><diff>10</diff><notes>884</notes></hyper>
+      <another><diff>11</diff><notes>1199</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>612</notes></normal>
+      <hyper><diff>11</diff><notes>951</notes></hyper>
+      <another><diff>12</diff><notes>1363</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13020">
+  <artist>Ryu☆</artist>
+  <title>Harmony and Lovely</title>
+  <genre>PROGRESSIVE HOUSE</genre>
+  <bpm>135</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>457</notes></normal>
+      <hyper><diff>8</diff><notes>902</notes></hyper>
+      <another><diff>11</diff><notes>1127</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>457</notes></normal>
+      <hyper><diff>9</diff><notes>896</notes></hyper>
+      <another><diff>11</diff><notes>1122</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13021">
+  <artist>AKIRA YAMAOKA</artist>
+  <title>Heavenly Sun (IIDX VERSION)</title>
+  <genre>TRANCE</genre>
+  <bpm>130</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>421</notes></normal>
+      <hyper><diff>7</diff><notes>802</notes></hyper>
+      <another><diff>10</diff><notes>1060</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>421</notes></normal>
+      <hyper><diff>8</diff><notes>805</notes></hyper>
+      <another><diff>10</diff><notes>1060</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13022">
+  <artist>AKIRA YAMAOKA</artist>
+  <title>iFUTURELIST</title>
+  <genre>FUTURELIST TYPE</genre>
+  <bpm>150</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>354</notes></normal>
+      <hyper><diff>6</diff><notes>585</notes></hyper>
+      <another><diff>8</diff><notes>854</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>352</notes></normal>
+      <hyper><diff>6</diff><notes>573</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13023">
+  <artist>Caldeira feat. 星野奏子</artist>
+  <title>INFERNO</title>
+  <genre>BRAZILIAN HOUSE</genre>
+  <bpm>135</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>601</notes></normal>
+      <hyper><diff>7</diff><notes>828</notes></hyper>
+      <another><diff>9</diff><notes>1008</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>600</notes></normal>
+      <hyper><diff>7</diff><notes>856</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13024">
+  <artist>SEIYA MURAI meets “eimy”</artist>
+  <title>Leaving…</title>
+  <genre>SYMPHONIC EURO</genre>
+  <bpm>145</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>396</notes></normal>
+      <hyper><diff>8</diff><notes>714</notes></hyper>
+      <another><diff>10</diff><notes>1071</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>386</notes></normal>
+      <hyper><diff>7</diff><notes>714</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13025">
+  <artist>Sota Fujimori</artist>
+  <title>Look To The Sky (cyber True Color)</title>
+  <genre>TRANCE</genre>
+  <bpm>145</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>505</notes></normal>
+      <hyper><diff>8</diff><notes>959</notes></hyper>
+      <another><diff>9</diff><notes>1216</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>506</notes></normal>
+      <hyper><diff>9</diff><notes>948</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13026">
+  <artist>Noria</artist>
+  <title>Melody Life</title>
+  <genre>NEW ACOUSTIC</genre>
+  <bpm>172</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>397</notes></normal>
+      <hyper><diff>6</diff><notes>673</notes></hyper>
+      <another><diff>9</diff><notes>933</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>399</notes></normal>
+      <hyper><diff>6</diff><notes>643</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13027">
+  <artist>SLAKE</artist>
+  <title>MINT</title>
+  <genre>ELECTRONICA</genre>
+  <bpm>150</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>524</notes></normal>
+      <hyper><diff>10</diff><notes>917</notes></hyper>
+      <another><diff>11</diff><notes>1158</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>517</notes></normal>
+      <hyper><diff>10</diff><notes>906</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13028">
+  <artist>dj TAKA feat. Erika Mochizuki</artist>
+  <title>MOON</title>
+  <genre>哀愁ユーロ</genre>
+  <bpm>156</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>436</notes></normal>
+      <hyper><diff>9</diff><notes>1067</notes></hyper>
+      <another><diff>10</diff><notes>1118</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>436</notes></normal>
+      <hyper><diff>10</diff><notes>1048</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13029">
+  <artist>ＴЁЯＲＡ underground</artist>
+  <title>Parasite World</title>
+  <genre>HYPER J-CORE</genre>
+  <bpm>135</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>686</notes></normal>
+      <hyper><diff>9</diff><notes>966</notes></hyper>
+      <another><diff>10</diff><notes>1194</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>703</notes></normal>
+      <hyper><diff>10</diff><notes>985</notes></hyper>
+      <another><diff>11</diff><notes>1195</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13030">
+  <artist>kors k feat. PSY</artist>
+  <title>Power of Love</title>
+  <genre>2 STEP</genre>
+  <bpm>135</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>513</notes></normal>
+      <hyper><diff>7</diff><notes>848</notes></hyper>
+      <another><diff>10</diff><notes>1077</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>512</notes></normal>
+      <hyper><diff>8</diff><notes>861</notes></hyper>
+      <another><diff>10</diff><notes>1065</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13031">
+  <artist>baby weapon feat. asuka.m</artist>
+  <title>Pretty Punisher</title>
+  <genre>DANCE POP</genre>
+  <bpm>143</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>499</notes></normal>
+      <hyper><diff>7</diff><notes>748</notes></hyper>
+      <another><diff>10</diff><notes>982</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>499</notes></normal>
+      <hyper><diff>7</diff><notes>748</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13033">
+  <artist>HHH (Ryu☆ &amp; Dai)</artist>
+  <title>So Fabulous !!</title>
+  <genre>BUCHIAGE TRANCE</genre>
+  <bpm>149</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>556</notes></normal>
+      <hyper><diff>8</diff><notes>784</notes></hyper>
+      <another><diff>10</diff><notes>1191</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>548</notes></normal>
+      <hyper><diff>9</diff><notes>853</notes></hyper>
+      <another><diff>11</diff><notes>1214</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13034">
+  <artist>Remixed by DJ YOSHITAKA</artist>
+  <title>SPRING RAIN (LLUVIA DE PRIMAVERA)</title>
+  <genre>TRANCE</genre>
+  <bpm>145</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>494</notes></normal>
+      <hyper><diff>7</diff><notes>680</notes></hyper>
+      <another><diff>8</diff><notes>905</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>494</notes></normal>
+      <hyper><diff>7</diff><notes>670</notes></hyper>
+      <another><diff>9</diff><notes>904</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13035">
+  <artist>mh sequence</artist>
+  <title>Sun Field</title>
+  <genre>HAPPY POP</genre>
+  <bpm>152</bpm>
+  <modes>
+    <single>
+      <normal><diff>3</diff><notes>287</notes></normal>
+      <hyper><diff>8</diff><notes>777</notes></hyper>
+      <another><diff>11</diff><notes>1234</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>449</notes></normal>
+      <hyper><diff>9</diff><notes>856</notes></hyper>
+      <another><diff>11</diff><notes>1158</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13036">
+  <artist>Tatsh Assault X</artist>
+  <title>The Dirty of Loudness</title>
+  <genre>SADISTIC HARDCORE</genre>
+  <bpm>165</bpm>
+  <modes>
+    <single>
+      <normal><diff>7</diff><notes>740</notes></normal>
+      <hyper><diff>10</diff><notes>1154</notes></hyper>
+      <another><diff>11</diff><notes>1327</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>723</notes></normal>
+      <hyper><diff>10</diff><notes>1122</notes></hyper>
+      <another><diff>10</diff><notes>1189</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13037">
+  <artist>D-crew feat. MAKOTO</artist>
+  <title>This is Love</title>
+  <genre>CORE POP</genre>
+  <bpm>175</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>473</notes></normal>
+      <hyper><diff>8</diff><notes>910</notes></hyper>
+      <another><diff>10</diff><notes>1249</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>489</notes></normal>
+      <hyper><diff>8</diff><notes>906</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13038">
+  <artist>tiger YAMATO</artist>
+  <title>tiger yamato</title>
+  <genre>NOISE POP</genre>
+  <bpm>150</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>400</notes></normal>
+      <hyper><diff>7</diff><notes>712</notes></hyper>
+      <another><diff>9</diff><notes>951</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>408</notes></normal>
+      <hyper><diff>8</diff><notes>721</notes></hyper>
+      <another><diff>10</diff><notes>970</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13039">
+  <artist>dj REMO-CON</artist>
+  <title>Tonight?</title>
+  <genre>ELECTROCK</genre>
+  <bpm>135</bpm>
+  <modes>
+    <single>
+      <normal><diff>3</diff><notes>321</notes></normal>
+      <hyper><diff>6</diff><notes>590</notes></hyper>
+      <another><diff>8</diff><notes>748</notes></another>
+    </single>
+    <double>
+      <normal><diff>3</diff><notes>321</notes></normal>
+      <hyper><diff>7</diff><notes>590</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13040">
+  <artist>kors k vs teranoid</artist>
+  <title>tripping contact</title>
+  <genre>FREEFORM</genre>
+  <bpm>182</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>686</notes></normal>
+      <hyper><diff>9</diff><notes>989</notes></hyper>
+      <another><diff>12</diff><notes>1360</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>725</notes></normal>
+      <hyper><diff>10</diff><notes>1081</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13041">
+  <artist>kors k vs teranoid</artist>
+  <title>tripping contact (teranoid&amp;MC Natsack Remix)</title>
+  <genre>GABBA</genre>
+  <bpm>187</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>646</notes></normal>
+      <hyper><diff>10</diff><notes>1020</notes></hyper>
+      <another><diff>11</diff><notes>1258</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>653</notes></normal>
+      <hyper><diff>10</diff><notes>968</notes></hyper>
+      <another><diff>12</diff><notes>1367</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13042">
+  <artist>L.E.D.</artist>
+  <title>TYPE MARS (G-Style Mix)</title>
+  <genre>PSYCHEDELIC TRANCE</genre>
+  <bpm>159</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>571</notes></normal>
+      <hyper><diff>9</diff><notes>974</notes></hyper>
+      <another><diff>11</diff><notes>1237</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>576</notes></normal>
+      <hyper><diff>10</diff><notes>990</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13043">
+  <artist>ELEKTEL</artist>
+  <title>Ubiquitous Fantastic Ride</title>
+  <genre>ELECTRO LOUNGE</genre>
+  <bpm>172</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>325</notes></normal>
+      <hyper><diff>7</diff><notes>628</notes></hyper>
+      <another><diff>8</diff><notes>835</notes></another>
+    </single>
+    <double>
+      <normal><diff>3</diff><notes>337</notes></normal>
+      <hyper><diff>7</diff><notes>615</notes></hyper>
+      <another><diff>9</diff><notes>792</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13044">
+  <artist>青龍</artist>
+  <title>waxing and wanding</title>
+  <genre>DANCE SPEED</genre>
+  <bpm>191</bpm>
+  <modes>
+    <single>
+      <normal><diff>7</diff><notes>658</notes></normal>
+      <hyper><diff>10</diff><notes>997</notes></hyper>
+      <another><diff>11</diff><notes>1457</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>647</notes></normal>
+      <hyper><diff>10</diff><notes>966</notes></hyper>
+      <another><diff>11</diff><notes>1399</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13045">
+  <artist>jun with TAHIRIH</artist>
+  <title>Why did you go away</title>
+  <genre>LOVERS EUROBEAT</genre>
+  <bpm>160</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>559</notes></normal>
+      <hyper><diff>8</diff><notes>904</notes></hyper>
+      <another><diff>10</diff><notes>1166</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>552</notes></normal>
+      <hyper><diff>9</diff><notes>901</notes></hyper>
+      <another><diff>11</diff><notes>1165</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13046">
+  <artist>Sota Fujimori</artist>
+  <title>Winning Eleven9 Theme (IIDX EDITION)</title>
+  <genre>NU BIGBEAT BREAKS</genre>
+  <bpm>140</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>420</notes></normal>
+      <hyper><diff>7</diff><notes>730</notes></hyper>
+      <another><diff>9</diff><notes>868</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>420</notes></normal>
+      <hyper><diff>7</diff><notes>730</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13047">
+  <artist>DJ Yoshitaka feat. 杉村ことみ</artist>
+  <title>wish</title>
+  <genre>CUTE POP'S</genre>
+  <bpm>115</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>401</notes></normal>
+      <hyper><diff>6</diff><notes>600</notes></hyper>
+      <another><diff>8</diff><notes>758</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>400</notes></normal>
+      <hyper><diff>7</diff><notes>601</notes></hyper>
+      <another><diff>8</diff><notes>784</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13048">
+  <artist>DJ YOSHITAKA feat. 杉村ことみ</artist>
+  <title>WISH (EUROBEAT MIX)</title>
+  <genre>EUROBEAT</genre>
+  <bpm>155</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>532</notes></normal>
+      <hyper><diff>8</diff><notes>824</notes></hyper>
+      <another><diff>9</diff><notes>990</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>532</notes></normal>
+      <hyper><diff>8</diff><notes>793</notes></hyper>
+      <another><diff>9</diff><notes>988</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13049">
+  <artist>Sota Fujimori</artist>
+  <title>with you…</title>
+  <genre>FUNK'N JAZZ HOUSE</genre>
+  <bpm>135</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>398</notes></normal>
+      <hyper><diff>6</diff><notes>580</notes></hyper>
+      <another><diff>9</diff><notes>891</notes></another>
+    </single>
+    <double>
+      <hyper><diff>7</diff><notes>580</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13050">
+  <artist>Tatsh</artist>
+  <title>Zenius -I- vanisher</title>
+  <genre>CYBER OPUS</genre>
+  <bpm>160</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>493</notes></normal>
+      <hyper><diff>7</diff><notes>790</notes></hyper>
+      <another><diff>10</diff><notes>1209</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>492</notes></normal>
+      <hyper><diff>8</diff><notes>776</notes></hyper>
+      <another><diff>11</diff><notes>1207</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13051">
+  <artist>橙色特別室</artist>
+  <title>カゴノトリ～弐式～</title>
+  <genre>和式電子音楽</genre>
+  <bpm>140</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>581</notes></normal>
+      <hyper><diff>9</diff><notes>944</notes></hyper>
+      <another><diff>12</diff><notes>1325</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>581</notes></normal>
+      <hyper><diff>9</diff><notes>978</notes></hyper>
+      <another><diff>12</diff><notes>1586</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13052">
+  <artist>星野奏子 with the BAND</artist>
+  <title>タシカナモノ</title>
+  <genre>POPROCK</genre>
+  <bpm>180</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>472</notes></normal>
+      <hyper><diff>7</diff><notes>726</notes></hyper>
+      <another><diff>9</diff><notes>1026</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>470</notes></normal>
+      <hyper><diff>7</diff><notes>797</notes></hyper>
+      <another><diff>10</diff><notes>1191</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13053">
+  <artist>白虎</artist>
+  <title>華蝶風雪</title>
+  <genre>ASIAN MIXTURE</genre>
+  <bpm>199</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>638</notes></normal>
+      <hyper><diff>10</diff><notes>1064</notes></hyper>
+      <another><diff>11</diff><notes>1500</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>626</notes></normal>
+      <hyper><diff>10</diff><notes>1041</notes></hyper>
+      <another><diff>12</diff><notes>1481</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13054">
+  <artist>金獅子</artist>
+  <title>嘆きの樹</title>
+  <genre>CONTEMPORARY</genre>
+  <bpm>160</bpm>
+  <modes>
+    <single>
+      <normal><diff>8</diff><notes>902</notes></normal>
+      <hyper><diff>11</diff><notes>1281</notes></hyper>
+      <another><diff>12</diff><notes>2000</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>875</notes></normal>
+      <hyper><diff>11</diff><notes>1281</notes></hyper>
+      <another><diff>12</diff><notes>2000</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13055">
+  <artist>DJ YOSHITAKA feat. G.S.C license</artist>
+  <title>虹色</title>
+  <genre>LOVELY TRANS POP</genre>
+  <bpm>160</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>488</notes></normal>
+      <hyper><diff>8</diff><notes>792</notes></hyper>
+      <another><diff>9</diff><notes>934</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>488</notes></normal>
+      <hyper><diff>7</diff><notes>793</notes></hyper>
+      <another><diff>8</diff><notes>934</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13056">
+  <artist>good-cool</artist>
+  <title>罠</title>
+  <genre>DRUM'N'ROCK</genre>
+  <bpm>180</bpm>
+  <modes>
+    <single>
+      <normal><diff>2</diff><notes>283</notes></normal>
+      <hyper><diff>8</diff><notes>777</notes></hyper>
+      <another><diff>10</diff><notes>1231</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>374</notes></normal>
+      <hyper><diff>7</diff><notes>730</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13057" age="old">
+  <artist>Amuro vs Killer</artist>
+  <title>冥</title>
+  <genre>HUMAN SEQUENCER</genre>
+  <bpm>66-200</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>555</notes></normal>
+      <hyper><diff>10</diff><notes>1111</notes></hyper>
+      <another><diff>12</diff><notes>2000</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>555</notes></normal>
+      <hyper><diff>11</diff><notes>1104</notes></hyper>
+      <another><diff>12</diff><notes>2000</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13058" age="old">
+  <artist>D.J.Amuro</artist>
+  <title>AA</title>
+  <genre>RENAISSANCE</genre>
+  <bpm>154</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>642</notes></normal>
+      <hyper><diff>10</diff><notes>1386</notes></hyper>
+      <another><diff>12</diff><notes>1834</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>659</notes></normal>
+      <hyper><diff>9</diff><notes>997</notes></hyper>
+      <another><diff>12</diff><notes>1739</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13059" age="old">
+  <artist>Tatsh&amp;NAOKI</artist>
+  <title>RED ZONE</title>
+  <genre>SPEED RAVE</genre>
+  <bpm>165</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>567</notes></normal>
+      <hyper><diff>9</diff><notes>975</notes></hyper>
+      <another><diff>11</diff><notes>1184</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>611</notes></normal>
+      <hyper><diff>9</diff><notes>941</notes></hyper>
+      <another><diff>11</diff><notes>1232</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13060" age="old">
+  <artist>Tatsh feat. K.Nayuki</artist>
+  <title>Sphere</title>
+  <genre>MEDIEVAL CHOIR</genre>
+  <bpm>160</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>541</notes></normal>
+      <hyper><diff>9</diff><notes>996</notes></hyper>
+      <another><diff>10</diff><notes>1111</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>522</notes></normal>
+      <hyper><diff>8</diff><notes>897</notes></hyper>
+      <another><diff>12</diff><notes>1139</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13061" age="old">
+  <artist>TaQ</artist>
+  <title>Karma</title>
+  <genre>DRUM'N'BASS</genre>
+  <bpm>200</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>668</notes></normal>
+      <hyper><diff>9</diff><notes>839</notes></hyper>
+      <another><diff>10</diff><notes>925</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>797</notes></normal>
+      <hyper><diff>11</diff><notes>1085</notes></hyper>
+      <another><diff>12</diff><notes>1267</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13062" age="old">
+  <artist>OutPhase</artist>
+  <title>quasar</title>
+  <genre>TRANCE</genre>
+  <bpm>155</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>591</notes></normal>
+      <hyper><diff>9</diff><notes>901</notes></hyper>
+      <another><diff>11</diff><notes>1161</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>710</notes></normal>
+      <hyper><diff>11</diff><notes>1056</notes></hyper>
+      <another><diff>12</diff><notes>1562</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13063" age="old">
+  <artist>Mr.T</artist>
+  <title>dual control</title>
+  <genre>GARAGE HOUSE</genre>
+  <bpm>131-140</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>403</notes></normal>
+      <hyper><diff>7</diff><notes>763</notes></hyper>
+      <another><diff>9</diff><notes>961</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>403</notes></normal>
+      <hyper><diff>8</diff><notes>756</notes></hyper>
+      <another><diff>9</diff><notes>854</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13064" age="old" another_id="N13901">
+  <artist>L.E.D.-G</artist>
+  <title>OUTER LIMITS</title>
+  <genre>HARDCORE BREAKBEATS</genre>
+  <bpm>171</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>457</notes></normal>
+      <hyper><diff>8</diff><notes>870</notes></hyper>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>672</notes></normal>
+      <hyper><diff>10</diff><notes>986</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13065" age="old">
+  <artist>Reven-G</artist>
+  <title>桜</title>
+  <genre>SPIRITUAL</genre>
+  <bpm>13-320</bpm>
+  <modes>
+    <single>
+      <normal><diff>7</diff><notes>541</notes></normal>
+      <hyper><diff>10</diff><notes>819</notes></hyper>
+      <another><diff>12</diff><notes>1123</notes></another>
+    </single>
+    <double>
+      <normal><diff>8</diff><notes>605</notes></normal>
+      <hyper><diff>10</diff><notes>819</notes></hyper>
+      <another><diff>12</diff><notes>1047</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13066" age="old">
+  <artist>SYMPHONIC DEFOGGERS</artist>
+  <title>General Relativity</title>
+  <genre>UK GARAGE/2-STEP</genre>
+  <bpm>142</bpm>
+  <modes>
+    <single>
+      <normal><diff>3</diff><notes>416</notes></normal>
+      <hyper><diff>5</diff><notes>527</notes></hyper>
+      <another><diff>7</diff><notes>606</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>598</notes></normal>
+      <hyper><diff>7</diff><notes>767</notes></hyper>
+      <another><diff>7</diff><notes>940</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13067" age="old">
+  <artist>TaQ</artist>
+  <title>stoic</title>
+  <genre>TECHNO</genre>
+  <bpm>155</bpm>
+  <modes>
+    <single>
+      <normal><diff>8</diff><notes>874</notes></normal>
+      <hyper><diff>10</diff><notes>1250</notes></hyper>
+      <another><diff>12</diff><notes>1302</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>874</notes></normal>
+      <hyper><diff>10</diff><notes>1126</notes></hyper>
+      <another><diff>12</diff><notes>1497</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13068" age="old">
+  <artist>TaQ</artist>
+  <title>era (nostalmix)</title>
+  <genre>DRUM'N'BASS</genre>
+  <bpm>90-180</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>437</notes></normal>
+      <hyper><diff>8</diff><notes>555</notes></hyper>
+      <another><diff>9</diff><notes>786</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>437</notes></normal>
+      <hyper><diff>11</diff><notes>952</notes></hyper>
+      <another><diff>11</diff><notes>1226</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13069" age="old">
+  <artist>Asuka M.</artist>
+  <title>IS THIS LOVE?</title>
+  <genre>DANCE POP</genre>
+  <bpm>115</bpm>
+  <modes>
+    <single>
+      <normal><diff>3</diff><notes>300</notes></normal>
+      <hyper><diff>4</diff><notes>441</notes></hyper>
+      <another><diff>5</diff><notes>445</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>406</notes></normal>
+      <hyper><diff>5</diff><notes>439</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13070" age="old">
+  <artist>Osamu Kubota</artist>
+  <title>Presto</title>
+  <genre>PIANO AMBIENT</genre>
+  <bpm>136</bpm>
+  <modes>
+    <single>
+      <normal><diff>3</diff><notes>273</notes></normal>
+      <hyper><diff>8</diff><notes>498</notes></hyper>
+      <another><diff>8</diff><notes>508</notes></another>
+    </single>
+    <double>
+      <normal><diff>3</diff><notes>274</notes></normal>
+      <hyper><diff>8</diff><notes>508</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13071" age="old">
+  <artist>TaQ</artist>
+  <title>Schlagwerk</title>
+  <genre>BIG BEAT</genre>
+  <bpm>125</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>414</notes></normal>
+      <hyper><diff>6</diff><notes>663</notes></hyper>
+      <another><diff>8</diff><notes>848</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>412</notes></normal>
+      <hyper><diff>11</diff><notes>1043</notes></hyper>
+      <another><diff>11</diff><notes>1090</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13072" age="old">
+  <artist>TaQ</artist>
+  <title>Digital MinD (A/T Libra mix)</title>
+  <genre>MINIMAL</genre>
+  <bpm>155</bpm>
+  <modes>
+    <single>
+      <normal><diff>3</diff><notes>374</notes></normal>
+      <hyper><diff>5</diff><notes>542</notes></hyper>
+      <another><diff>6</diff><notes>573</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>374</notes></normal>
+      <hyper><diff>8</diff><notes>597</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13073" age="old">
+  <artist>good-cool</artist>
+  <title>I Was The One</title>
+  <genre>ITALO HOUSE</genre>
+  <bpm>125</bpm>
+  <modes>
+    <single>
+      <normal><diff>2</diff><notes>272</notes></normal>
+      <hyper><diff>3</diff><notes>326</notes></hyper>
+      <another><diff>3</diff><notes>348</notes></another>
+    </single>
+    <double>
+      <normal><diff>1</diff><notes>205</notes></normal>
+      <hyper><diff>2</diff><notes>270</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13074" age="old">
+  <artist>SYMPHONIC DEFOGGERS</artist>
+  <title>RUGGED ASH</title>
+  <genre>FUTURE JAZZ</genre>
+  <bpm>168</bpm>
+  <modes>
+    <single>
+      <normal><diff>2</diff><notes>185</notes></normal>
+      <hyper><diff>3</diff><notes>201</notes></hyper>
+      <another><diff>9</diff><notes>556</notes></another>
+    </single>
+    <double>
+      <normal><diff>3</diff><notes>186</notes></normal>
+      <hyper><diff>4</diff><notes>201</notes></hyper>
+      <another><diff>9</diff><notes>624</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13075" age="old">
+  <artist>L.E.D.-G VS GUHROOVY</artist>
+  <title>eRAseRmOToRpHAntOM</title>
+  <genre>HARDCORE</genre>
+  <bpm>135-270</bpm>
+  <modes>
+    <single>
+      <normal><diff>7</diff><notes>787</notes></normal>
+      <hyper><diff>10</diff><notes>1340</notes></hyper>
+      <another><diff>12</diff><notes>1686</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>788</notes></normal>
+      <hyper><diff>10</diff><notes>1281</notes></hyper>
+      <another><diff>12</diff><notes>1798</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13076" age="old">
+  <artist>Aya</artist>
+  <title>Smoke</title>
+  <genre>NU-FUSION</genre>
+  <bpm>160</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>383</notes></normal>
+      <hyper><diff>7</diff><notes>713</notes></hyper>
+      <another><diff>10</diff><notes>879</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>521</notes></normal>
+      <hyper><diff>7</diff><notes>713</notes></hyper>
+      <another><diff>10</diff><notes>929</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13077" age="old">
+  <artist>Sota Fujimori</artist>
+  <title>The Hope of Tomorrow</title>
+  <genre>CYBORG TRANCE</genre>
+  <bpm>144</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>732</notes></normal>
+      <hyper><diff>8</diff><notes>1012</notes></hyper>
+      <another><diff>10</diff><notes>1404</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>904</notes></normal>
+      <hyper><diff>9</diff><notes>1332</notes></hyper>
+      <another><diff>11</diff><notes>1716</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13078" age="old">
+  <artist>Sota Fujimori</artist>
+  <title>Back Into The Light</title>
+  <genre>2STEP POP TRANCE</genre>
+  <bpm>144</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>713</notes></normal>
+      <hyper><diff>9</diff><notes>1075</notes></hyper>
+      <another><diff>10</diff><notes>1344</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>903</notes></normal>
+      <hyper><diff>9</diff><notes>1323</notes></hyper>
+      <another><diff>10</diff><notes>1560</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13079">
+  <artist>ＴЁЯＲＡ</artist>
+  <title>零 - ZERO -</title>
+  <genre>HYPER J-POP ZERO</genre>
+  <bpm>180</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>596</notes></normal>
+      <hyper><diff>8</diff><notes>912</notes></hyper>
+      <another><diff>9</diff><notes>1162</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>601</notes></normal>
+      <hyper><diff>8</diff><notes>909</notes></hyper>
+      <another><diff>10</diff><notes>1154</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13080" age="old">
+  <artist>DJ SIMON</artist>
+  <title>321 STARS</title>
+  <genre>TECHNO POP</genre>
+  <bpm>192</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>276</notes></normal>
+      <hyper><diff>8</diff><notes>413</notes></hyper>
+      <another><diff>10</diff><notes>588</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>294</notes></normal>
+      <hyper><diff>6</diff><notes>436</notes></hyper>
+      <another><diff>9</diff><notes>626</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13081" age="old">
+  <artist>DJ FX</artist>
+  <title>Attack the music</title>
+  <genre>HARD TECHNO</genre>
+  <bpm>140</bpm>
+  <modes>
+    <single>
+      <normal><diff>1</diff><notes>139</notes></normal>
+      <hyper><diff>5</diff><notes>323</notes></hyper>
+      <another><diff>6</diff><notes>397</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>324</notes></normal>
+      <hyper><diff>7</diff><notes>378</notes></hyper>
+      <another><diff>6</diff><notes>403</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13082" age="old">
+  <artist>CALF</artist>
+  <title>CALDERA</title>
+  <genre>HARDCORE</genre>
+  <bpm>120-210</bpm>
+  <modes>
+    <single>
+      <normal><diff>7</diff><notes>436</notes></normal>
+      <hyper><diff>10</diff><notes>686</notes></hyper>
+      <another><diff>11</diff><notes>787</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>438</notes></normal>
+      <hyper><diff>9</diff><notes>665</notes></hyper>
+      <another><diff>11</diff><notes>754</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13083" age="old">
+  <artist>DJ ODDBALL</artist>
+  <title>DRUNK MONKY</title>
+  <genre>MINIMAL</genre>
+  <bpm>145</bpm>
+  <modes>
+    <single>
+      <normal><diff>7</diff><notes>524</notes></normal>
+      <hyper><diff>10</diff><notes>833</notes></hyper>
+      <another><diff>12</diff><notes>1177</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>593</notes></normal>
+      <hyper><diff>9</diff><notes>862</notes></hyper>
+      <another><diff>11</diff><notes>1104</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13084" age="old">
+  <artist>RAM</artist>
+  <title>LIGHT MOTION</title>
+  <genre>RAVE</genre>
+  <bpm>152</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>314</notes></normal>
+      <hyper><diff>6</diff><notes>486</notes></hyper>
+      <another><diff>8</diff><notes>532</notes></another>
+    </single>
+    <double>
+      <normal><diff>3</diff><notes>315</notes></normal>
+      <hyper><diff>5</diff><notes>476</notes></hyper>
+      <another><diff>7</diff><notes>531</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13085" age="old" another_id="N13902">
+  <artist>nouvo nude</artist>
+  <title>super highway</title>
+  <genre>DRUM'N BASS</genre>
+  <bpm>160</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>349</notes></normal>
+      <hyper><diff>7</diff><notes>395</notes></hyper>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>391</notes></normal>
+      <hyper><diff>8</diff><notes>452</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13086">
+  <artist>dj TAKA Vs. DJ YOSHITAKA</artist>
+  <title>quell -the seventh slave-</title>
+  <genre>TRANCE</genre>
+  <bpm>140</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>490</notes></normal>
+      <hyper><diff>9</diff><notes>926</notes></hyper>
+      <another><diff>12</diff><notes>1646</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>638</notes></normal>
+      <hyper><diff>11</diff><notes>944</notes></hyper>
+      <another><diff>12</diff><notes>1752</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13087">
+  <artist>Ryu☆ Vs. Sota</artist>
+  <title>Go Beyond!!</title>
+  <genre>TRANCE CORE</genre>
+  <bpm>200</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>547</notes></normal>
+      <hyper><diff>10</diff><notes>899</notes></hyper>
+      <another><diff>12</diff><notes>1166</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>528</notes></normal>
+      <hyper><diff>10</diff><notes>822</notes></hyper>
+      <another><diff>12</diff><notes>1087</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13088">
+  <artist>kors k Vs. L.E.D.</artist>
+  <title>SOLID STATE SQUAD</title>
+  <genre>HARDSTYLE</genre>
+  <bpm>155</bpm>
+  <modes>
+    <single>
+      <normal><diff>5</diff><notes>539</notes></normal>
+      <hyper><diff>10</diff><notes>1188</notes></hyper>
+      <another><diff>12</diff><notes>1819</notes></another>
+    </single>
+    <double>
+      <normal><diff>5</diff><notes>539</notes></normal>
+      <hyper><diff>11</diff><notes>1188</notes></hyper>
+      <another><diff>12</diff><notes>1913</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13089">
+  <artist>DJ CHUCKY</artist>
+  <title>VANISHING POINT</title>
+  <genre>NU STYLE GABBA</genre>
+  <bpm>170</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>542</notes></normal>
+      <hyper><diff>8</diff><notes>829</notes></hyper>
+      <another><diff>10</diff><notes>1261</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>668</notes></normal>
+      <hyper><diff>8</diff><notes>900</notes></hyper>
+      <another><diff>10</diff><notes>1392</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13090">
+  <artist>Studio Bongo Mango feat. Tomoko Kataoka</artist>
+  <title>breathless</title>
+  <genre>DIST.LOUNGE</genre>
+  <bpm>175</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>437</notes></normal>
+      <hyper><diff>7</diff><notes>763</notes></hyper>
+      <another><diff>9</diff><notes>1017</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>437</notes></normal>
+      <hyper><diff>8</diff><notes>763</notes></hyper>
+    </double>
+  </modes>
+</song>
+<song id="N13091">
+  <artist>高田雅史</artist>
+  <title>WaterCube Pf. (RX-Ver.S.P.L.)</title>
+  <genre>ETHNO POP</genre>
+  <bpm>150</bpm>
+  <modes>
+    <single>
+      <normal><diff>3</diff><notes>295</notes></normal>
+      <hyper><diff>7</diff><notes>700</notes></hyper>
+      <another><diff>10</diff><notes>1120</notes></another>
+    </single>
+    <double>
+      <normal><diff>3</diff><notes>351</notes></normal>
+      <hyper><diff>7</diff><notes>735</notes></hyper>
+      <another><diff>10</diff><notes>1143</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13092">
+  <artist>Manabu Namiki</artist>
+  <title>Shoot'Em All</title>
+  <genre>DETROIT TECHNO</genre>
+  <bpm>152</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>404</notes></normal>
+      <hyper><diff>7</diff><notes>748</notes></hyper>
+      <another><diff>11</diff><notes>1264</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>318</notes></normal>
+      <hyper><diff>7</diff><notes>855</notes></hyper>
+      <another><diff>11</diff><notes>1416</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13093">
+  <artist>猫叉Master+</artist>
+  <title>Infinite cave</title>
+  <genre>DRUM'N'BASS</genre>
+  <bpm>190</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>529</notes></normal>
+      <hyper><diff>9</diff><notes>786</notes></hyper>
+      <another><diff>10</diff><notes>1044</notes></another>
+    </single>
+    <double>
+      <normal><diff>7</diff><notes>724</notes></normal>
+      <hyper><diff>10</diff><notes>1137</notes></hyper>
+      <another><diff>12</diff><notes>1525</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13094">
+  <artist>L.E.D.</artist>
+  <title>QUANTUM TELEPORTATION</title>
+  <genre>TECHNO</genre>
+  <bpm>152</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>729</notes></normal>
+      <hyper><diff>10</diff><notes>1216</notes></hyper>
+      <another><diff>11</diff><notes>1490</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>729</notes></normal>
+      <hyper><diff>10</diff><notes>1216</notes></hyper>
+      <another><diff>12</diff><notes>1999</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13095">
+  <artist>Xephia (Tatsh＋Yuta)</artist>
+  <title>Bleeding Luv ～Immorality act～</title>
+  <genre>PROVIDENCE R</genre>
+  <bpm>214</bpm>
+  <modes>
+    <single>
+      <normal><diff>6</diff><notes>616</notes></normal>
+      <hyper><diff>8</diff><notes>982</notes></hyper>
+      <another><diff>11</diff><notes>1412</notes></another>
+    </single>
+    <double>
+      <normal><diff>6</diff><notes>616</notes></normal>
+      <hyper><diff>9</diff><notes>1025</notes></hyper>
+      <another><diff>11</diff><notes>1297</notes></another>
+    </double>
+  </modes>
+</song>
+<song id="N13096">
+  <artist>Sota Fujimori</artist>
+  <title>Hybrid Landscape</title>
+  <genre>HEC-DRUM'N'BASS</genre>
+  <bpm>170</bpm>
+  <modes>
+    <single>
+      <normal><diff>4</diff><notes>369</notes></normal>
+      <hyper><diff>8</diff><notes>686</notes></hyper>
+      <another><diff>9</diff><notes>858</notes></another>
+    </single>
+    <double>
+      <normal><diff>4</diff><notes>369</notes></normal>
+      <hyper><diff>8</diff><notes>686</notes></hyper>
+    </double>
+  </modes>
+</song>
+<another_song id="N13901" original_id="N13064">
+  <artist>L.E.D.-G</artist>
+  <title>OUTER LIMITS ALTERNATIVE</title>
+  <genre>HARD CORE</genre>
+  <bpm>175</bpm>
+  <modes>
+    <single>
+      <another><diff>10</diff><notes>1363</notes></another>
+    </single>
+    <double>
+      <another><diff>11</diff><notes>1431</notes></another>
+    </double>
+  </modes>
+</another_song>
+<another_song id="N13902" age="old" original_id="N13085">
+  <artist>nouvo nude (another mixed by DOCTOR S)</artist>
+  <title>super highway (SUPER SUBWAY MIX)</title>
+  <genre>DRUM'N BASS</genre>
+  <bpm>160</bpm>
+  <modes>
+    <single>
+      <another><diff>8</diff><notes>483</notes></another>
+    </single>
+    <double>
+      <another><diff>8</diff><notes>483</notes></another>
+    </double>
+  </modes>
+</another_song>
+</songlist>

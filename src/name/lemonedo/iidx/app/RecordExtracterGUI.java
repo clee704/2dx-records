@@ -89,7 +89,8 @@ class RecordExtracterGUI {
     right.setBorder(createTitledBorder(getString("T_PLAY_MODE")));
     JButton openButton = new JButton(getString("B_OPEN"));
     JButton infoButton = new JButton(getString("B_INFO"));
-    JButton goButton = new JButton(getString("B_GO"));
+    JButton homepageButton = new JButton(getString("B_GO"));
+    JButton checkButton = new JButton(getString("B_CHECK"));
     JButton extractButton = new JButton(getString("B_EXTRACT"));
     JButton exitButton = new JButton(getString("B_EXIT"));
     JLabel openLabel = new JLabel(getString("L_OPEN"));
@@ -148,14 +149,16 @@ class RecordExtracterGUI {
       contentPane.add(middle);
       contentPane.add(right);
       contentPane.add(infoButton);
-      contentPane.add(goButton);
+      contentPane.add(homepageButton);
+      contentPane.add(checkButton);
       contentPane.add(extractButton);
       contentPane.add(exitButton);
       layout.putConstraint(EAST, contentPane, 3, EAST, right);
       layout.putConstraint(WEST, upper, 3, WEST, contentPane);
       layout.putConstraint(WEST, left, 3, WEST, contentPane);
       layout.putConstraint(WEST, infoButton, 3, WEST, upper);
-      layout.putConstraint(WEST, goButton, 3, EAST, infoButton);
+      layout.putConstraint(WEST, homepageButton, 3, EAST, infoButton);
+      layout.putConstraint(WEST, checkButton, 3, EAST, homepageButton);
       layout.putConstraint(WEST, middle, 3, EAST, left);
       layout.putConstraint(WEST, right, 3, EAST, middle);
       layout.putConstraint(EAST, upper, -3, EAST, contentPane);
@@ -166,7 +169,8 @@ class RecordExtracterGUI {
       layout.putConstraint(NORTH, middle, 3, SOUTH, upper);
       layout.putConstraint(NORTH, right, 3, SOUTH, upper);
       layout.putConstraint(NORTH, infoButton, 3, SOUTH, right);
-      layout.putConstraint(NORTH, goButton, 3, SOUTH, right);
+      layout.putConstraint(NORTH, homepageButton, 3, SOUTH, right);
+      layout.putConstraint(NORTH, checkButton, 3, SOUTH, right);
       layout.putConstraint(NORTH, extractButton, 3, SOUTH, right);
       layout.putConstraint(NORTH, exitButton, 3, SOUTH, right);
       layout.putConstraint(SOUTH, contentPane, 3, SOUTH, infoButton);
@@ -178,9 +182,14 @@ class RecordExtracterGUI {
         showInfoMessage();
       }
     });
-    goButton.addActionListener(new ActionListener() {
+    homepageButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        openDistributionSite();
+        openHomepage();
+      }
+    });
+    checkButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        checkLatestVersion();
       }
     });
     openButton.addActionListener(new ActionListener() {
@@ -209,16 +218,26 @@ class RecordExtracterGUI {
   }
 
   private void showInfoMessage() {
-    String msg = getString("INFO");
-    showMessageDialog(frame, msg, getString("T_INFO"), INFORMATION_MESSAGE);
+    showInfoDialog(getString("M_INFO"));
   }
 
-  private void openDistributionSite() {
+  private void openHomepage() {
     if (browserLauncher == null)
       showErrorDialog(getString("E_OPEN_PAGE") + getString("SITE_URL"));
     else
       ((BrowserLauncherWrapper) browserLauncher).openURLinBrowser(getString(
           "SITE_URL"));
+  }
+
+  private void checkLatestVersion() {
+    try {
+      if (UpdateChecker.check())
+        showInfoDialog(getString("M_LATEST"));
+      else
+        showInfoDialog(getString("M_OLD"));
+    } catch (Exception e) {
+      showErrorDialog(getString("E_CHECK"));
+    }
   }
 
   private void getPsuFile() {
@@ -234,8 +253,7 @@ class RecordExtracterGUI {
 
   private void extract() {
     File psuFile = new File(openField.getText());
-    Version v = Version.getVersion(psuFile);
-    if (v == null) {
+    if (Version.getVersion(psuFile) == null) {
       showErrorDialog(getString("E_VERSION"));
       return;
     }
@@ -250,12 +268,12 @@ class RecordExtracterGUI {
     String path = outputFile.getAbsolutePath();
     outputFile = new File(ensureExtension(path, ".html"));
     if (outputFile.exists()) {
-      int r = showConfirmDialog(frame, getString("OVERWRITE"),
+      int r = showConfirmDialog(frame, getString("M_OVERWRITE"),
           getString("T_OVERWRITE"), OK_CANCEL_OPTION);
       if (r == CANCEL_OPTION)
         return;
     }
-    RecordReader reader = RecordReaderFactory.create(v, psuFile);
+    RecordReader reader = RecordReaderFactory.create(psuFile);
     EnumMap<PlayMode, List<Record>> records;
     records = new EnumMap<PlayMode, List<Record>>(PlayMode.class);
     for (PlayMode m : PlayMode.values())
@@ -296,7 +314,7 @@ class RecordExtracterGUI {
       printer.setExcludeNoClear(noClearBox.isSelected());
       printer.addRecords("Single", records.get(PlayMode.SN));
       printer.addRecords("Double", records.get(PlayMode.DN));
-      printer.print(v);
+      printer.print(reader.getVersion());
       System.setOut(stdout);
       out.close();
     } catch (NoRecordsToPrintException e) {
@@ -319,7 +337,7 @@ class RecordExtracterGUI {
       });
     } catch (Exception e) {
       return null;
-    } catch (Error e) {
+    } catch (NoClassDefFoundError e) {
       showErrorDialog(getString("E_NO_LIB"));
       return null;
     }
@@ -330,6 +348,10 @@ class RecordExtracterGUI {
       return path + extension;
     else
       return path;
+  }
+
+  private void showInfoDialog(String message) {
+    showMessageDialog(frame, message, getString("T_INFO"), INFORMATION_MESSAGE);
   }
 
   private void showErrorDialog(String message) {

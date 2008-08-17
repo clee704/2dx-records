@@ -41,10 +41,10 @@ public class Record {
       public int compare(Record o1, Record o2) {
         Value d1 = o1.getDifficulty();
         Value d2 = o2.getDifficulty();
-        if (d1 == null)
-          return -1;
-        else if (d2 == null)
+        if (d1.isUndefined())
           return 1;
+        else if (d2.isUndefined())
+          return -1;
         else
           return d1.toInt() - d2.toInt();
       };

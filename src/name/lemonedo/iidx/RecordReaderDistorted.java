@@ -1,5 +1,7 @@
 package name.lemonedo.iidx;
 
+import static name.lemonedo.iidx.Version.DISTORTED;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,7 +13,8 @@ import java.util.List;
 class RecordReaderDistorted extends RecordReader {
 
   public RecordReaderDistorted(File saveFile) {
-    super(saveFile, SongListReader.read("songlist/distorted.txt"));
+    super(saveFile, SongListXmlParser.parse("songlist/distorted.xml"),
+        96, DISTORTED);
   }
 
   @Override
@@ -59,10 +62,10 @@ class RecordReaderDistorted extends RecordReader {
                           PlayMode m) throws IOException {
     byte[] buf1 = new byte[26];
     byte[] buf2 = new byte[2];
-    for (Song s : songList) {
+    for (int i = 1; i <= entrySize; i++) {
       bis1.read(buf1);
       bis2.read(buf2);
-      Record r = parseRecord(buf1, buf2, s, m);
+      Record r = parseRecord(buf1, buf2, songList.get(i), m);
       if (r != null)
         records.get(m).add(r);
     }

@@ -7,9 +7,11 @@ public class Song {
   private static final String TO_STRING_FORMAT = "GENRE: %s, TITLE: %s, ARTIS" +
       "T: %s";
 
+  private final int id;
   private final String genre;
   private final String title;
   private final String artist;
+  private final String bpm;
   private final boolean oldSong;
 
   private final EnumMap<PlayMode, Value> difficulties;
@@ -17,40 +19,26 @@ public class Song {
 
   private final Song another;
 
-  public Song(String genre, String title, String artist, boolean oldSong,
-              int difficultySn, int difficultySh, int difficultySa,
-              int difficultyDn, int difficultyDh, int difficultyDa,
-              int numNotesSn, int numNotesSh, int numNotesSa, int numNotesDn,
-              int numNotesDh, int numNotesDa) {
-    this(genre, title, artist, oldSong, difficultySn, difficultySh,
-        difficultySa, difficultyDn, difficultyDh, difficultyDa, numNotesSn,
-        numNotesSh, numNotesSa, numNotesDn, numNotesDh, numNotesDa, null);
-  }
-
-  public Song(String genre, String title, String artist, boolean oldSong,
-              int difficultySn, int difficultySh, int difficultySa,
-              int difficultyDn, int difficultyDh, int difficultyDa,
-              int numNotesSn, int numNotesSh, int numNotesSa, int numNotesDn,
-              int numNotesDh, int numNotesDa, Song another) {
+  private Song(int id, String genre, String title, String artist, String bpm,
+               boolean oldSong, EnumMap<PlayMode, Value> difficulties,
+               EnumMap<PlayMode, Value> numNotes, Song another) {
+    this.id = id;
     this.genre = genre;
     this.title = title;
     this.artist = artist;
+    this.bpm = bpm;
     this.oldSong = oldSong;
+    this.difficulties = difficulties.clone();
+    this.numNotes = numNotes.clone();
     this.another = another;
-    difficulties = new EnumMap<PlayMode, Value>(PlayMode.class);
-    difficulties.put(PlayMode.SN, new Value(difficultySn, 1, 12));
-    difficulties.put(PlayMode.SH, new Value(difficultySh, 1, 12));
-    difficulties.put(PlayMode.SA, new Value(difficultySa, 1, 12));
-    difficulties.put(PlayMode.DN, new Value(difficultyDn, 1, 12));
-    difficulties.put(PlayMode.DH, new Value(difficultyDh, 1, 12));
-    difficulties.put(PlayMode.DA, new Value(difficultyDa, 1, 12));
-    numNotes = new EnumMap<PlayMode, Value>(PlayMode.class);
-    numNotes.put(PlayMode.SN, new Value(numNotesSn, 0, 9999));
-    numNotes.put(PlayMode.SH, new Value(numNotesSh, 0, 9999));
-    numNotes.put(PlayMode.SA, new Value(numNotesSa, 0, 9999));
-    numNotes.put(PlayMode.DN, new Value(numNotesDn, 0, 9999));
-    numNotes.put(PlayMode.DH, new Value(numNotesDh, 0, 9999));
-    numNotes.put(PlayMode.DA, new Value(numNotesDa, 0, 9999));
+  }
+
+  public static Builder newBuilder() {
+    return new Builder();
+  }
+
+  public int getId() {
+    return id;
   }
 
   public String getGenre() {
@@ -63,6 +51,10 @@ public class Song {
 
   public String getArtist() {
     return artist;
+  }
+
+  public String getBpm() {
+    return bpm;
   }
 
   public boolean isOldSong() {
@@ -88,5 +80,80 @@ public class Song {
   @Override
   public String toString() {
     return String.format(TO_STRING_FORMAT, genre, title, artist);
+  }
+
+  public static class Builder {
+
+    private int id = -1;
+    private String genre;
+    private String title;
+    private String artist;
+    private String bpm;
+    private boolean oldSong;
+    private EnumMap<PlayMode, Value> difficulties;
+    private EnumMap<PlayMode, Value> numNotes;
+    private Song another;
+
+    private Builder() {
+      difficulties = new EnumMap<PlayMode, Value>(PlayMode.class);
+      numNotes = new EnumMap<PlayMode, Value>(PlayMode.class);
+      for (PlayMode m : PlayMode.values()) {
+        difficulties.put(m, Value.UNDEFINED);
+        numNotes.put(m, Value.UNDEFINED);
+      }
+    }
+
+    public Song build() {
+      if (id == -1 || genre == null || title == null || artist == null ||
+            bpm == null)
+        throw new IllegalStateException();
+      return new Song(id, genre, title, artist, bpm, oldSong, difficulties,
+          numNotes, another);
+    }
+
+    public Builder id(int val) {
+      id = val;
+      return this;
+    }
+
+    public Builder genre(String val) {
+      genre = val;
+      return this;
+    }
+
+    public Builder title(String val) {
+      title = val;
+      return this;
+    }
+
+    public Builder artist(String val) {
+      artist = val;
+      return this;
+    }
+
+    public Builder bpm(String val) {
+      bpm = val;
+      return this;
+    }
+
+    public Builder oldSong(boolean val) {
+      oldSong = val;
+      return this;
+    }
+
+    public Builder difficulty(int val, PlayMode m) {
+      difficulties.put(m, Value.create(val, 1, 12));
+      return this;
+    }
+
+    public Builder numNotes(int val, PlayMode m) {
+      numNotes.put(m, Value.create(val, 1, 9999));
+      return this;
+    }
+
+    public Builder another(Song val) {
+      another = val;
+      return this;
+    }
   }
 }

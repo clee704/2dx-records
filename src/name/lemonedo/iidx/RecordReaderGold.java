@@ -14,7 +14,8 @@ class RecordReaderGold extends RecordReader {
       0x7F, 0xFF};
 
   public RecordReaderGold(File saveFile) {
-    super(saveFile, SongListReader.read("songlist/gold.txt"));
+    super(saveFile, SongListXmlParser.parse("songlist/gold.xml"), 96,
+        Version.GOLD);
   }
 
   @Override
@@ -53,9 +54,9 @@ class RecordReaderGold extends RecordReader {
   private void readHelper(BufferedInputStream bis, PlayMode m)
   throws IOException {
     byte[] buf = new byte[20];
-    for (Song s : songList) {
+    for (int i = 1; i <= entrySize; i++) {
       bis.read(buf);
-      Record r = parseRecord(buf, s, m);
+      Record r = parseRecord(buf, songList.get(i), m);
       if (r != null)
         records.get(m).add(r);
     }
