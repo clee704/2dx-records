@@ -7,7 +7,7 @@ import java.net.URLConnection;
 
 class UpdateChecker {
 
-  private static final String VERSION = "0.20r25";
+  private static final String VERSION = "0.20r28";
   private static final String UPDATE_CHECK_URL =
       "http://code.google.com/p/2dx-records/wiki/LastestVersionCheck"; 
 
