@@ -90,7 +90,7 @@ public class Record {
   }
 
   private Value createCommonValue(int val) {
-    return Value.create(val, 1, 9999);
+    return Value.create(val, 0, 9999);
   }
 
   public Song getSong() {

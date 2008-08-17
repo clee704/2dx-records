@@ -33,7 +33,7 @@ class SongListReader {
 
   private static int parseInt(String n) {
     if (!n.matches("\\d+"))
-      return 0;
+      return -1;
     else
       return Integer.parseInt(n);
   }
