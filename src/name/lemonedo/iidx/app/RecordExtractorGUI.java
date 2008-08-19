@@ -18,9 +18,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -41,34 +39,24 @@ import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import name.lemonedo.iidx.PlayMode;
-import name.lemonedo.iidx.Record;
-import name.lemonedo.iidx.RecordReader;
 import name.lemonedo.iidx.RecordReaderFactory;
-import name.lemonedo.iidx.Version;
-import name.lemonedo.iidx.util.HtmlPrinter;
-import name.lemonedo.iidx.util.NoRecordsToPrintException;
-import name.lemonedo.util.UnaryMethod;
+import name.lemonedo.util.UnaryFunction;
 
-class RecordExtracterGUI {
+class RecordExtractorGUI {
 
   private final JFrame frame;
   private final JFileChooser opener;
   private final JFileChooser saver;
   private final JTextField openField;
-  private final JRadioButton seperateButton;
+  private final JRadioButton separateButton;
   private final JRadioButton mixButton;
   private final JCheckBox noClearBox;
-  private final JCheckBox snBox;
-  private final JCheckBox shBox;
-  private final JCheckBox saBox;
-  private final JCheckBox dnBox;
-  private final JCheckBox dhBox;
-  private final JCheckBox daBox;
+  private final EnumMap<PlayMode, JCheckBox> playModeBoxes;
 
-  private final HtmlPrinter printer;
+  private final RecordExtractor recordExtractor;
   private final Object browserLauncher;
 
-  RecordExtracterGUI() {
+  RecordExtractorGUI() {
     frame = new JFrame(getString("TITLE"));
     opener = new JFileChooser();
     opener.setFileFilter(new FileNameExtensionFilter(getString("PSU_DESC"),
@@ -96,30 +84,31 @@ class RecordExtracterGUI {
     JLabel openLabel = new JLabel(getString("L_OPEN"));
     openField = new JTextField();
     openLabel.setLabelFor(openField);
-    seperateButton = new JRadioButton(getString("B_SEPERATE"));
+    separateButton = new JRadioButton(getString("B_SEPARATE"));
     mixButton = new JRadioButton(getString("B_MIX"), true);
     ButtonGroup group = new ButtonGroup();
-    group.add(seperateButton);
+    group.add(separateButton);
     group.add(mixButton);
     left.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 3));
-    left.add(seperateButton);
+    left.add(separateButton);
     left.add(mixButton);
     noClearBox = new JCheckBox("No Clear", false);
     middle.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 3));
     middle.add(noClearBox);
-    snBox = new JCheckBox("SN", true);
-    shBox = new JCheckBox("SH", true);
-    saBox = new JCheckBox("SA", true);
-    dnBox = new JCheckBox("DN", true);
-    dhBox = new JCheckBox("DH", true);
-    daBox = new JCheckBox("DA", true);
+    playModeBoxes = new EnumMap<PlayMode, JCheckBox>(PlayMode.class);
+    playModeBoxes.put(PlayMode.SN, new JCheckBox("SN", true));
+    playModeBoxes.put(PlayMode.SH, new JCheckBox("SH", true));
+    playModeBoxes.put(PlayMode.SA, new JCheckBox("SA", true));
+    playModeBoxes.put(PlayMode.DN, new JCheckBox("DN", true));
+    playModeBoxes.put(PlayMode.DH, new JCheckBox("DH", true));
+    playModeBoxes.put(PlayMode.DA, new JCheckBox("DA", true));
     right.setLayout(new FlowLayout(FlowLayout.CENTER, 3, 3));
-    right.add(snBox);
-    right.add(shBox);
-    right.add(saBox);
-    right.add(dnBox);
-    right.add(dhBox);
-    right.add(daBox);
+    right.add(playModeBoxes.get(PlayMode.SN));
+    right.add(playModeBoxes.get(PlayMode.SH));
+    right.add(playModeBoxes.get(PlayMode.SA));
+    right.add(playModeBoxes.get(PlayMode.DN));
+    right.add(playModeBoxes.get(PlayMode.DH));
+    right.add(playModeBoxes.get(PlayMode.DA));
 
     // upper panel layout
     {
@@ -208,7 +197,7 @@ class RecordExtracterGUI {
       }
     });
 
-    printer = new HtmlPrinter();
+    recordExtractor = new RecordExtractor();
     browserLauncher = createBrowserLauncher();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setResizable(false);
@@ -253,10 +242,11 @@ class RecordExtracterGUI {
 
   private void extract() {
     File psuFile = new File(openField.getText());
-    if (Version.getVersion(psuFile) == null) {
+    if (!RecordReaderFactory.isSupportedVersion(psuFile)) {
       showErrorDialog(getString("E_VERSION"));
       return;
     }
+
     switch (saver.showSaveDialog(frame)) {
     case JFileChooser.CANCEL_OPTION:
       return;
@@ -264,62 +254,25 @@ class RecordExtracterGUI {
       showErrorDialog(getString("E_SAVE_FILE"));
       return;
     }
-    File outputFile = saver.getSelectedFile();
-    String path = outputFile.getAbsolutePath();
-    outputFile = new File(ensureExtension(path, ".html"));
-    if (outputFile.exists()) {
+    String path = saver.getSelectedFile().getAbsolutePath();
+    File documentFile = new File(ensureExtension(path, ".html"));
+    if (documentFile.exists()) {
       int r = showConfirmDialog(frame, getString("M_OVERWRITE"),
           getString("T_OVERWRITE"), OK_CANCEL_OPTION);
       if (r == CANCEL_OPTION)
         return;
     }
-    RecordReader reader = RecordReaderFactory.create(psuFile);
-    EnumMap<PlayMode, List<Record>> records;
-    records = new EnumMap<PlayMode, List<Record>>(PlayMode.class);
-    for (PlayMode m : PlayMode.values())
-      records.put(m, new ArrayList<Record>());
+
     try {
-      if (snBox.isSelected())
-        records.get(PlayMode.SN).addAll(reader.read(PlayMode.SN));
-      if (shBox.isSelected())
-        records.get(PlayMode.SH).addAll(reader.read(PlayMode.SH));
-      if (saBox.isSelected())
-        records.get(PlayMode.SA).addAll(reader.read(PlayMode.SA));
-      if (dnBox.isSelected())
-        records.get(PlayMode.DN).addAll(reader.read(PlayMode.DN));
-      if (dhBox.isSelected())
-        records.get(PlayMode.DH).addAll(reader.read(PlayMode.DH));
-      if (daBox.isSelected())
-        records.get(PlayMode.DA).addAll(reader.read(PlayMode.DA));
-      if (seperateButton.isSelected()) {
-        for (PlayMode m : PlayMode.values())
-          sortRecords(records.get(m));
-        records.get(PlayMode.SN).addAll(records.get(PlayMode.SH));
-        records.get(PlayMode.SN).addAll(records.get(PlayMode.SA));
-        records.get(PlayMode.DN).addAll(records.get(PlayMode.DH));
-        records.get(PlayMode.DN).addAll(records.get(PlayMode.DA));
-      }
-      else {
-        records.get(PlayMode.SN).addAll(records.get(PlayMode.SH));
-        records.get(PlayMode.SN).addAll(records.get(PlayMode.SA));
-        sortRecords(records.get(PlayMode.SN));
-        records.get(PlayMode.DN).addAll(records.get(PlayMode.DH));
-        records.get(PlayMode.DN).addAll(records.get(PlayMode.DA));
-        sortRecords(records.get(PlayMode.DN));
-      }
-      PrintStream out = new PrintStream(outputFile, "utf-8");
-      PrintStream stdout = System.out;
-      System.setOut(out);
-      printer.clear();
-      printer.setExcludeNoClear(noClearBox.isSelected());
-      printer.addRecords("Single", records.get(PlayMode.SN));
-      printer.addRecords("Double", records.get(PlayMode.DN));
-      printer.print(reader.getVersion());
-      System.setOut(stdout);
-      out.close();
-    } catch (NoRecordsToPrintException e) {
-      showErrorDialog(getString("E_NO_RECORDS"));
-      return;
+      List<PlayMode> selected = new ArrayList<PlayMode>();
+      for (PlayMode mode : PlayMode.values())
+        if (playModeBoxes.get(mode).isSelected())
+          selected.add(mode);
+      recordExtractor.setExcludeNoClear(noClearBox.isSelected());
+      recordExtractor.setSortSeparately(separateButton.isSelected());
+      boolean r = recordExtractor.extract(psuFile, documentFile, selected); 
+      if (!r)
+        showErrorDialog(getString("E_NO_RECORDS"));
     } catch (Exception e) {
       e.printStackTrace();
       showErrorDialog(getString("E_FAILED"));
@@ -329,7 +282,7 @@ class RecordExtracterGUI {
 
   private Object createBrowserLauncher() {
     try {
-      return new BrowserLauncherWrapper(new UnaryMethod<Void, Exception>() {
+      return new BrowserLauncherWrapper(new UnaryFunction<Void, Exception>() {
         public Void eval(Exception e) {
           showErrorDialog(getString("E_OPEN_PAGE") + getString("SITE_URL"));
           return null;
@@ -356,10 +309,5 @@ class RecordExtracterGUI {
 
   private void showErrorDialog(String message) {
     showMessageDialog(frame, message, getString("T_ERROR"), ERROR_MESSAGE);
-  }
-
-  private static void sortRecords(List<Record> records) {
-    Collections.sort(records, Record.TITLE_ORDER);
-    Collections.sort(records, Record.DIFFICULTY_ORDER);
   }
 }

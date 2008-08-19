@@ -37,7 +37,7 @@ public final class Utf8ResourceBundle {
 
     private final PropertyResourceBundle bundle;
 
-    private Utf8PropertyResourceBundle(PropertyResourceBundle bundle) {
+    Utf8PropertyResourceBundle(PropertyResourceBundle bundle) {
       this.bundle = bundle;
     }
 

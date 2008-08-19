@@ -21,6 +21,7 @@ public class Record {
 
   public static final Comparator<Record> TITLE_ORDER;
   public static final Comparator<Record> DIFFICULTY_ORDER;
+  public static final Comparator<Record> PLAY_MODE_ORDER;
 
   static {
     TITLE_ORDER = new Comparator<Record>() {
@@ -41,6 +42,11 @@ public class Record {
         else
           return d1.toInt() - d2.toInt();
       };
+    };
+    PLAY_MODE_ORDER = new Comparator<Record>() {
+      public int compare(Record o1, Record o2) {
+        return o1.getPlayMode().compareTo(o2.getPlayMode());
+      }
     };
   }
 

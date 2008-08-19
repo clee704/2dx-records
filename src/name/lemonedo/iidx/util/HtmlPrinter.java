@@ -5,7 +5,9 @@ import static name.lemonedo.iidx.PlayMode.SA;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Formatter;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -28,6 +30,7 @@ public class HtmlPrinter {
 
   private final Map<String, List<Record>> labeledRecords;
   private Map<String, List<Record>> toPrint;
+  private boolean sortSEPARATEly;
   private boolean excludeNoClear;
 
   /**
@@ -41,6 +44,7 @@ public class HtmlPrinter {
       entryLayout = loadLayoutFile(resourceAsStream("layout/layout_entry.txt"));
       labeledRecords = new LinkedHashMap<String, List<Record>>();
       toPrint = null;
+      sortSEPARATEly = false;
       excludeNoClear = false;
     } catch (Exception e) {
       // cannot be reached
@@ -77,6 +81,16 @@ public class HtmlPrinter {
   }
 
   /**
+   * Sets whether or not this sorts records sEPARATEly according to the play
+   * mode while printing. Default setting is <code>false</code>. 
+   * 
+   * @param aFlag a flag
+   */
+  public void setSortSeparately(boolean aFlag) {
+    sortSEPARATEly = aFlag;
+  }
+
+  /**
    * Sets whether this should not prints records which have 'No Clear' as its
    * clear state. Default is <code>false</code>.
    * @param aFlag <code>true</code> if this should exclude 'No Clear' on
@@ -91,10 +105,11 @@ public class HtmlPrinter {
    * used to print records from different versions, though it is not recommended
    * to print records from different versions in one document.
    * 
-   * @throws NoRecordsToPrintException if there is no records to print
+   * @param out <code>PrintStream</code> to which this prints
+   * @return <code>false</code> if there is no records to print
    */
-  public void print() throws NoRecordsToPrintException {
-    print(null);
+  public boolean print(PrintStream out) {
+    return print(out, null);
   }
 
   /**
@@ -102,13 +117,15 @@ public class HtmlPrinter {
    * <code>v</code> is <code>null</code>, then invoking this method is equal to
    * invoking {@link name.lemonedo.iidx.util.HtmlPrinter#print print()}.
    * 
+   * @param out <code>PrintStream</code> to which this prints
    * @param v the version
-   * @throws NoRecordsToPrintException if there is no records to print
+   * @return <code>false</code> if there is no records to print
    */
-  public void print(Version v) throws NoRecordsToPrintException {
+  public boolean print(PrintStream out, Version v) {
     getToPrint();
     if (toPrint.isEmpty())
-      throw new NoRecordsToPrintException();
+      return false;
+    sortToPrint();
     Formatter f = new Formatter();
     StringBuilder buf1 = new StringBuilder();
     StringBuilder buf2 = new StringBuilder();
@@ -117,8 +134,9 @@ public class HtmlPrinter {
     printLabelList(buf2);
     String[] colorHex = toColorHex(v);
     String title = (v == null ? "beatmaniaIIDX" : v.toString());
-    System.out.println(String.format(bodyLayout, title, f, buf1, buf2,
+    out.println(String.format(bodyLayout, title, f, buf1, buf2,
         colorHex[0], colorHex[1]));
+    return true;
   }
 
   private InputStream resourceAsStream(String name) {
@@ -149,6 +167,15 @@ public class HtmlPrinter {
     }
     else
       toPrint = labeledRecords;
+  }
+
+  private void sortToPrint() {
+    for (List<Record> records : labeledRecords.values()) {
+      Collections.sort(records, Record.TITLE_ORDER);
+      Collections.sort(records, Record.DIFFICULTY_ORDER);
+      if (sortSEPARATEly)
+        Collections.sort(records, Record.PLAY_MODE_ORDER);
+    }
   }
 
   private void printTables(Formatter f) {
@@ -285,6 +312,7 @@ public class HtmlPrinter {
   }
 
   private static class Cleared implements UnaryPredicate<Record> {
+
     public Boolean eval(Record e) {
       switch (e.getClear()) {
       case NO_PLAY:
