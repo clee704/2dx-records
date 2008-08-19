@@ -80,6 +80,20 @@ public class Song {
     return String.format(TO_STRING_FORMAT, genre, title, artist);
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (o == this)
+      return true;
+    if (!(o instanceof Song))
+      return false;
+    Song s = (Song) o;
+    return s.genre.equals(genre) && s.title.equals(title)
+        && s.artist.equals(artist) && s.bpm.equals(bpm) && s.oldSong == oldSong
+        && s.difficulties.equals(difficulties) && s.numNotes.equals(numNotes)
+        && ((s.another == null && another == null)
+            || (s.another.equals(another)));
+  }
+
   public static class Builder {
 
     private String genre;

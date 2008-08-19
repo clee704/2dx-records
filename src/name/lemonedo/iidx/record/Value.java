@@ -46,4 +46,10 @@ public class Value {
     else
       return String.valueOf(value);
   }
+
+  @Override
+  public boolean equals(Object o) {
+    return (o == this) || ((o instanceof Value) && ((Value) o).value == value
+        && ((Value) o).min == min && ((Value) o).max == max);
+  }
 }

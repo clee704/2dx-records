@@ -16,6 +16,7 @@ class RecordReaderHappySky extends AbstractRecordReader {
         new Pair<Integer>(114066, 26), new Pair<Integer>(128418, 2));
   }
 
+  @Override
   protected Record parseRecord(byte[][] b, Song song, PlayMode mode) {
     if (b[0][20] == 9)
       return null;

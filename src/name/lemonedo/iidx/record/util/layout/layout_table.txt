@@ -1,6 +1,6 @@
   <div id="%1$s">
     <h3>%1$s</h3>
-    <table border="0" cellspacing="1" cellpadding="3">
+    <table border="0" cellspacing="1">
       <tr class="label">
         <th><a onclick="sort('%1$s', 'title');">TITLE</a> <small><a onclick="sort('%1$s', 'oldSong');">(NEW/OLD)</a></small></th>
         <th><a onclick="sort('%1$s', 'playMode');">M</a></th>

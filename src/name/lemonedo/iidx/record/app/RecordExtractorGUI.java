@@ -199,9 +199,6 @@ class RecordExtractorGUI {
     save = new JFileChooser();
     save.setFileFilter(new FileNameExtensionFilter(getString("HTML_DESC"),
         "html"));
-    String defaultPath = System.getProperty("user.dir") + "/records.html";
-    open.setSelectedFile(new File(defaultPath));
-    save.setSelectedFile(new File(defaultPath));
     recordExtractor = new RecordExtractor();
     browserLauncher = createBrowserLauncher();
 
@@ -287,6 +284,15 @@ class RecordExtractorGUI {
     }
   }
 
+  /**
+   * Returns an <code>BrowserLauncher</code>, or <code>null</code> if it fails
+   * to load the class. This method is for safe dynamic library loading. If the
+   * library is not found, only the function that depends on that library will
+   * be disabled.
+   * 
+   * @return an <code>BrowserLauncher</code>, or <code>null</code> if it fails
+   *        to load the class
+   */
   private Object createBrowserLauncher() {
     try {
       return new BrowserLauncherWrapper(new UnaryFunction<Void, Exception>() {

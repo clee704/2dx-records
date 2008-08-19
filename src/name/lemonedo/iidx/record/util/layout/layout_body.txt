@@ -7,17 +7,18 @@
     body { font-size: 15px; color: #ffffff; background-color: #000000; }
     tr { text-align: right; background-color: #%5$s; }
     tr.label { background-color: #%6$s; }
-    th { font-size: 13px; }
+    th { font-size: 13px; padding: 2px; }
     th.ex { width: 200px; }
     th.notes { width: 48px; }
+    td { padding: 2px; }
     td.SN { text-align: center; color: #0099FF; }
     td.DN { text-align: center; color: #0099FF; }
     td.SH { text-align: center; color: #ffaa00; }
     td.DH { text-align: center; color: #ffaa00; }
     td.SA { text-align: center; color: #FF3333; }
     td.DA { text-align: center; color: #FF3333; }
-    td.old { }
-    td.new { color: #ffdd00; }
+    td.old { padding-left: 8px; }
+    td.new { padding-left: 8px; color: #ffdd00; }
     td.graph { text-align: left; font-size: 0px; padding: 0px; background-image: url('graphbg.gif'); background-repeat: repeat-y; height: 8px; }
     img { vertical-align: text-bottom; }
     img.graph { height: 8px; opacity: 0.4; filter: alpha(opacity=40); }

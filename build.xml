@@ -1,27 +1,55 @@
 <?xml version="1.0"?>
-<project name="2dx-records" default="compile" basedir=".">
+<project name="2dx-record" default="compile" basedir=".">
   <property name="build.dir" location="../build"/>
+  <property name="build.prod.dir" location="${build.dir}/prod"/>
+  <property name="build.test.dir" location="${build.dir}/test"/>
   <property name="src.dir" location="src"/>
+  <property name="test.dir" location="test"/>
   <property name="lib.dir" location="lib"/>
+
   <path id="project.classpath">
-	<pathelement location="${build.dir}"/>
-	<fileset dir="${lib.dir}">
-	  <include name="*.jar"/>
-	</fileset>
+    <pathelement location="${build.prod.dir}"/>
+    <pathelement location="${build.test.dir}"/>
+    <fileset dir="${lib.dir}">
+      <include name="*.jar"/>
+    </fileset>
   </path>
-  <target name="prepare">
-	<mkdir dir="${build.dir}"/>
-  </target>
-  <target name="compile" depends="prepare">
-	<javac srcdir="${src.dir}" destdir="${build.dir}">
-	  <classpath refid="project.classpath"/>
-	</javac>
-  	<copy todir="${build.dir}">
-  	  <fileset dir="${src.dir}" includes="**/*.properties"/>
-      <fileset dir="${src.dir}" includes="**/*.txt"/>
-  	</copy>
-  </target>
+
   <target name="clean">
     <delete dir="${build.dir}"/>
+  </target>
+
+  <target name="prepare">
+    <mkdir dir="${build.prod.dir}"/>
+    <mkdir dir="${build.test.dir}"/>
+  </target>
+
+  <target name="compile" depends="prepare">
+    <javac srcdir="${src.dir}" destdir="${build.prod.dir}">
+      <classpath refid="project.classpath"/>
+    </javac>
+    <copy todir="${build.prod.dir}">
+      <fileset dir="${src.dir}" includes="**/*.properties"/>
+      <fileset dir="${src.dir}" includes="**/*.txt"/>
+    </copy>
+  </target>
+
+  <target name="compile-tests" depends="compile">
+    <javac srcdir="${test.dir}" destdir="${build.test.dir}" debug="true">
+      <classpath refid="project.classpath"/>
+    </javac>
+    <copy todir="${build.test.dir}">
+      <fileset dir="${test.dir}" includes="**/*.psu"/>
+    </copy>
+  </target>
+
+  <target name="test" depends="compile-tests">
+    <junit haltonfailure="true">
+      <classpath refid="project.classpath"/>
+      <formatter type="brief" usefile="false"/>
+      <batchtest>
+        <fileset dir="${build.test.dir}" includes="**/*Test.class"/>
+      </batchtest>
+    </junit>
   </target>
 </project>

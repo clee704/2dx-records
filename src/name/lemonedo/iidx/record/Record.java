@@ -182,6 +182,22 @@ public class Record {
         great, good, bad, poor);
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (o == this)
+      return true;
+    if (!(o instanceof Record))
+      return false;
+    Record r = (Record) o;
+    return r.song.equals(song) && r.difficulty.equals(difficulty)
+        && r.totalNotes.equals(totalNotes) && r.playMode.equals(playMode)
+        && r.djLevel.equals(djLevel) && r.clear.equals(clear)
+        && r.exScore.equals(exScore) && r.just.equals(just)
+        && r.great.equals(great) && r.good.equals(good) && r.bad.equals(bad)
+        && r.poor.equals(poor) && r.maxCombo.equals(maxCombo)
+        && r.missCount.equals(missCount) && r.playCount.equals(playCount);
+  }
+
   public static class Builder {
 
     private Song song;

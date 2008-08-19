@@ -11,9 +11,10 @@ import name.lemonedo.util.Utf8ResourceBundle;
  */
 class Messages {
 
-  private static final String BUNDLE_NAME = "name.lemonedo.iidx.app.messages";
-  private static final ResourceBundle RESOURCE_BUNDLE = Utf8ResourceBundle
-      .getBundle(BUNDLE_NAME);
+  private static final String BUNDLE_NAME =
+      "name.lemonedo.iidx.record.app.messages";
+  private static final ResourceBundle RESOURCE_BUNDLE =
+      Utf8ResourceBundle.getBundle(BUNDLE_NAME);
 
   // prevent instantiation
   private Messages() {}
