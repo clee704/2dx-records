@@ -1,4 +1,4 @@
-package name.lemonedo.iidx.app;
+package name.lemonedo.iidx.record.app;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -19,6 +19,9 @@ class UpdateChecker {
       ".*<div[^<>]+id\\s*=\\s*[\"']?wikicontent[\"']?[^<>]*>.*";
   private static final String REGEXP_2 =
       "[^<>]*<p[^<>]*>" + VERSION + ".*";
+
+  // prevent instantiation
+  private UpdateChecker() {}
 
   static boolean check(int timeout) throws IOException {
     Scanner sc = null;

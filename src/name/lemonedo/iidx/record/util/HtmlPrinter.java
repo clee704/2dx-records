@@ -1,11 +1,13 @@
-package name.lemonedo.iidx.util;
+package name.lemonedo.iidx.record.util;
 
-import static name.lemonedo.iidx.PlayMode.DA;
-import static name.lemonedo.iidx.PlayMode.SA;
+import static name.lemonedo.iidx.record.PlayMode.DA;
+import static name.lemonedo.iidx.record.PlayMode.SA;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Formatter;
@@ -14,10 +16,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import name.lemonedo.iidx.PlayMode;
-import name.lemonedo.iidx.Record;
-import name.lemonedo.iidx.Song;
-import name.lemonedo.iidx.Version;
+import name.lemonedo.iidx.record.PlayMode;
+import name.lemonedo.iidx.record.Record;
+import name.lemonedo.iidx.record.Song;
+import name.lemonedo.iidx.record.Version;
 import name.lemonedo.util.Algorithms;
 import name.lemonedo.util.UnaryPredicate;
 
@@ -27,14 +29,14 @@ import name.lemonedo.util.UnaryPredicate;
  */
 public class HtmlPrinter {
 
-  private final String ln;
+  private final String newLine;
   private final String bodyLayout;
   private final String tableLayout;
   private final String entryLayout;
 
   private final Map<String, List<Record>> labeledRecords;
   private Map<String, List<Record>> toPrint;
-  private boolean sortSEPARATEly;
+  private boolean sortSeparaately;
   private boolean excludeNoClear;
 
   /**
@@ -42,17 +44,16 @@ public class HtmlPrinter {
    */
   public HtmlPrinter() {
     try {
-      ln = System.getProperty("line.separator");
+      newLine = System.getProperty("line.separator");
       bodyLayout = loadLayoutFile(resourceAsStream("layout/layout_body.txt"));
       tableLayout = loadLayoutFile(resourceAsStream("layout/layout_table.txt"));
       entryLayout = loadLayoutFile(resourceAsStream("layout/layout_entry.txt"));
       labeledRecords = new LinkedHashMap<String, List<Record>>();
       toPrint = null;
-      sortSEPARATEly = false;
+      sortSeparaately = false;
       excludeNoClear = false;
-    } catch (Exception e) {
-      // cannot be reached
-      throw new RuntimeException("can't open layout files", e);
+    } catch (IOException e) {
+      throw new RuntimeException("can't load layout files", e);
     }
   }
 
@@ -60,20 +61,20 @@ public class HtmlPrinter {
    * Adds the specified records to print to this printer, with the specified
    * label. With the label as a title, records with the same label will be
    * printed together in a table when printing. If the label or the record list
-   * is empty, records will not be added.
+   * is empty or <code>null</code>, records will not be added.
    * 
    * @param label the label for the records
    * @param records the records
-   * @return <code>true</code> if the records are added 
-   * @throws NullPointerException if <code>label</code> or <code>records</code>
-   *        is <code>null</code>
+   * @return <code>true</code> if the records are added
    */
   public boolean addRecords(String label, List<Record> records) {
     if (label == null || records == null)
-      throw new NullPointerException();
+      return false;
     if (label.length() == 0 || records.size() == 0)
       return false;
-    labeledRecords.put(label, new ArrayList<Record>(records));
+    if (!labeledRecords.containsKey("label"))
+      labeledRecords.put(label, new ArrayList<Record>());
+    labeledRecords.get(label).addAll(records);
     return true;
   }
 
@@ -85,20 +86,22 @@ public class HtmlPrinter {
   }
 
   /**
-   * Sets whether or not this sorts records sEPARATEly according to the play
-   * mode while printing. Default setting is <code>false</code>. 
+   * Sets whether or not this sorts records separately according to the play
+   * mode while printing. Default setting is <code>false</code>.
    * 
-   * @param aFlag a flag
+   * @param aFlag <code>true</code> if this should sorts records separately
+   *             according to the play mode while printing
    */
   public void setSortSeparately(boolean aFlag) {
-    sortSEPARATEly = aFlag;
+    sortSeparaately = aFlag;
   }
 
   /**
-   * Sets whether this should not prints records which have 'No Clear' as its
-   * clear state. Default is <code>false</code>.
-   * @param aFlag <code>true</code> if this should exclude 'No Clear' on
-   *       printing
+   * Sets whether or not this exclude records with the clear state <code>
+   * NO_CLEAR</code> while printing. Default setting is <code>false</code>.
+   * 
+   * @param aFlag <code>true</code> if this should exclude records with the
+   *             clear state <code>NO_CLEAR</code> while printing
    */
   public void setExcludeNoClear(boolean aFlag) {
     excludeNoClear = aFlag;
@@ -109,38 +112,46 @@ public class HtmlPrinter {
    * used to print records from different versions, though it is not recommended
    * to print records from different versions in one document.
    * 
-   * @param out <code>PrintStream</code> to which this prints
+   * @param out <code>OutputStream</code> to which this prints
    * @return <code>false</code> if there is no records to print
+   * @throws RuntimeException if UTF-8 encoding is not supported
    */
-  public boolean print(PrintStream out) {
+  public boolean print(OutputStream out) {
     return print(out, null);
   }
 
   /**
    * Prints records with the specified version as a title (head). If
    * <code>v</code> is <code>null</code>, then invoking this method is equal to
-   * invoking {@link name.lemonedo.iidx.util.HtmlPrinter#print print()}.
+   * invoking {@link name.lemonedo.iidx.record.util.HtmlPrinter#print print()}.
    * 
-   * @param out <code>PrintStream</code> to which this prints
+   * @param out <code>OutputStream</code> to which this prints
    * @param v the version
    * @return <code>false</code> if there is no records to print
+   * @throws RuntimeException if UTF-8 encoding is not supported
    */
-  public boolean print(PrintStream out, Version v) {
-    getToPrint();
-    if (toPrint.isEmpty())
-      return false;
-    sortToPrint();
-    Formatter f = new Formatter();
-    StringBuilder buf1 = new StringBuilder();
-    StringBuilder buf2 = new StringBuilder();
-    printTables(f);
-    printRecordLists(buf1);
-    printLabelList(buf2);
-    String[] colorHex = toColorHex(v);
-    String title = (v == null ? "beatmaniaIIDX" : v.toString());
-    out.println(String.format(bodyLayout, title, f, buf1, buf2,
-        colorHex[0], colorHex[1]));
-    return true;
+  public boolean print(OutputStream out, Version v) {
+    try {
+      PrintStream ps = new PrintStream(out, false, "UTF-8");
+      getToPrint();
+      sortToPrint();
+      if (toPrint.isEmpty())
+        return false;
+      String title = (v == null ? "beatmania IIDX" : v.toString());
+      String[] colorHex = toColorHex(v);
+      Formatter tables = new Formatter();
+      StringBuilder recordLists = new StringBuilder();
+      StringBuilder lableList = new StringBuilder();
+      printTables(tables);
+      printRecordLists(recordLists);
+      printLabelList(lableList);
+      ps.println(String.format(bodyLayout, title, tables, recordLists,
+          lableList, colorHex[0], colorHex[1]));
+      ps.flush();
+      return true;
+    } catch (UnsupportedEncodingException e) {
+      throw new RuntimeException("UTF-8 is not supported");
+    }
   }
 
   private InputStream resourceAsStream(String name) {
@@ -148,11 +159,11 @@ public class HtmlPrinter {
   }
 
   private String loadLayoutFile(InputStream in) throws IOException {
-    Scanner sc = new Scanner(in, "utf-8");
+    Scanner sc = new Scanner(in, "UTF-8");
     try {
       StringBuilder buf = new StringBuilder();
       while (sc.hasNextLine())
-        buf.append(sc.nextLine()).append(ln);
+        buf.append(sc.nextLine()).append(newLine);
       return buf.toString();
     } finally {
       sc.close();
@@ -177,7 +188,7 @@ public class HtmlPrinter {
     for (List<Record> records : labeledRecords.values()) {
       Collections.sort(records, Record.TITLE_ORDER);
       Collections.sort(records, Record.DIFFICULTY_ORDER);
-      if (sortSEPARATEly)
+      if (sortSeparaately)
         Collections.sort(records, Record.PLAY_MODE_ORDER);
     }
   }
@@ -194,12 +205,12 @@ public class HtmlPrinter {
         boolean oldSong = s.isOldSong();
         if (title.contains("&"))
           title = title.replace("&", "&amp;");
-        entries.format(entryLayout, oldSong ? "old" : "new", title, playMode, r
-            .getDifficulty(), toImgTag(r.getDjLevel()), r.getExScore(), r
-            .getScoreRate(), r.getTotalNotes(), r.getJust(), r.getGreat(), r
-            .getGood(), r.getBad(), r.getPoor(), toImgTag(r.getClear()), r
-            .getMaxCombo(), r.getMissCount(), r.getPlayCount(), (int) (1.98 * r
-            .getScoreRate()));
+        entries.format(entryLayout, oldSong ? "old" : "new", title, playMode,
+            r.getDifficulty(), toImgTag(r.getDjLevel()), r.getExScore(),
+            r.getScoreRate(), r.getTotalNotes(), r.getJust(), r.getGreat(),
+            r.getGood(), r.getBad(), r.getPoor(), toImgTag(r.getClear()),
+            r.getMaxCombo(), r.getMissCount(), r.getPlayCount(),
+            (int) (1.98 * r.getScoreRate()));
       }
       f.format(tableLayout, label, entries);
     }
@@ -209,17 +220,17 @@ public class HtmlPrinter {
     int i = 0;
     for (String label : toPrint.keySet()) {
       i++;
-      buf.append("    '").append(label).append("':[").append(ln);
+      buf.append("    '").append(label).append("':[").append(newLine);
       int j = 0;
       for (Record r : toPrint.get(label)) {
         j++;
         buf.append("        record(").append(toString(r)).append(')');
         if (j != toPrint.get(label).size())
-          buf.append(',').append(ln);
+          buf.append(',').append(newLine);
       }
       buf.append(']');
       if (i != toPrint.size())
-        buf.append(',').append(ln);
+        buf.append(',').append(newLine);
     }
   }
 

@@ -1,4 +1,4 @@
-package name.lemonedo.iidx.app;
+package name.lemonedo.iidx.record.app;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -18,6 +18,7 @@ class Launcher {
     }
   }
 
+  // prevent instantiation
   private Launcher() {}
 
   public static void main(String[] args) {

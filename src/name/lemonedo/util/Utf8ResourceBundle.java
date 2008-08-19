@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
  */
 public final class Utf8ResourceBundle {
 
+  // prevent instatiation
   private Utf8ResourceBundle() {}
 
   public static ResourceBundle getBundle(String baseName) {

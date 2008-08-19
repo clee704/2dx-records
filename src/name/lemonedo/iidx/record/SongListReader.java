@@ -1,4 +1,4 @@
-package name.lemonedo.iidx;
+package name.lemonedo.iidx.record;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -10,6 +10,9 @@ import java.util.Scanner;
  * @author LEE Chungmin
  */
 class SongListReader {
+
+  // prevent instantiation
+  private SongListReader() {}
 
   static List<Song> read(String name) {
     return read(SongListReader.class.getResourceAsStream("songlist/" + name),

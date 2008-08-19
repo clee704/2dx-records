@@ -9,6 +9,7 @@ import java.util.List;
  */
 public final class Algorithms {
 
+  // prevent instatiation
   private Algorithms() {}
 
   public static <T> List<T> filter(List<T> list, UnaryPredicate<? super T> p) {

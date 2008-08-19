@@ -1,10 +1,10 @@
-package name.lemonedo.iidx.app;
+package name.lemonedo.iidx.record.app;
 
 import java.io.*;
 import java.util.*;
 
-import name.lemonedo.iidx.*;
-import name.lemonedo.iidx.util.*;
+import name.lemonedo.iidx.record.*;
+import name.lemonedo.iidx.record.util.*;
 
 /**
  * 
@@ -22,10 +22,11 @@ public class RecordExtractor {
   }
 
   /**
-   * Sets whether or not this sorts records sEPARATEly according to the play
-   * mode while printing. Default setting is <code>false</code>. 
+   * Sets whether or not this sorts records separately according to the play
+   * mode while printing. Default setting is <code>false</code>.
    * 
-   * @param aFlag a flag
+   * @param aFlag <code>true</code> if this should sorts records separately
+   *             according to the play mode while printing
    */
   public void setSortSeparately(boolean aFlag) {
     htmlPrinter.setSortSeparately(aFlag);
@@ -35,7 +36,8 @@ public class RecordExtractor {
    * Sets whether or not this exclude records with the clear state <code>
    * NO_CLEAR</code> while printing. Default setting is <code>false</code>.
    * 
-   * @param aFlag a flag
+   * @param aFlag <code>true</code> if this should exclude records with the
+   *             clear state <code>NO_CLEAR</code> while printing
    */
   public void setExcludeNoClear(boolean aFlag) {
     htmlPrinter.setExcludeNoClear(aFlag);
@@ -65,7 +67,7 @@ public class RecordExtractor {
     htmlPrinter.clear();
     htmlPrinter.addRecords("Single", singleRecords);
     htmlPrinter.addRecords("Double", doubleRecords);
-    PrintStream out = new PrintStream(documentFile, "UTF-8");
+    FileOutputStream out = new FileOutputStream(documentFile);
     try {
       return htmlPrinter.print(out, recordReader.getVersion());
     } finally {

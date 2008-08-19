@@ -1,4 +1,4 @@
-package name.lemonedo.iidx.app;
+package name.lemonedo.iidx.record.app;
 
 import static javax.swing.BorderFactory.createTitledBorder;
 import static javax.swing.JOptionPane.CANCEL_OPTION;
@@ -11,7 +11,7 @@ import static javax.swing.SpringLayout.EAST;
 import static javax.swing.SpringLayout.NORTH;
 import static javax.swing.SpringLayout.SOUTH;
 import static javax.swing.SpringLayout.WEST;
-import static name.lemonedo.iidx.app.Messages.getString;
+import static name.lemonedo.iidx.record.app.Messages.getString;
 
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -38,8 +38,8 @@ import javax.swing.GroupLayout.ParallelGroup;
 import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import name.lemonedo.iidx.PlayMode;
-import name.lemonedo.iidx.RecordReaderFactory;
+import name.lemonedo.iidx.record.PlayMode;
+import name.lemonedo.iidx.record.RecordReaderFactory;
 import name.lemonedo.util.UnaryFunction;
 
 /**
@@ -232,7 +232,6 @@ class RecordExtractorGUI {
       else
         showInfoDialog(getString("M_OLD"));
     } catch (Exception e) {
-      e.printStackTrace();
       showErrorDialog(getString("E_CHECK"));
     }
   }

@@ -1,8 +1,8 @@
-package name.lemonedo.iidx;
+package name.lemonedo.iidx.record;
 
-import static name.lemonedo.iidx.Version.DISTORTED;
-import static name.lemonedo.iidx.Version.GOLD;
-import static name.lemonedo.iidx.Version.HAPPY_SKY;
+import static name.lemonedo.iidx.record.Version.DISTORTED;
+import static name.lemonedo.iidx.record.Version.GOLD;
+import static name.lemonedo.iidx.record.Version.HAPPY_SKY;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +12,9 @@ import java.io.IOException;
  * @author LEE Chungmin
  */
 public class RecordReaderFactory {
+
+  // prevent instantiation
+  private RecordReaderFactory() {}
 
   /**
    * Returns <code>true</code> if the specified PSU file is of the supported

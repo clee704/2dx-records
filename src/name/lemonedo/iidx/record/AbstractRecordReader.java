@@ -1,4 +1,4 @@
-package name.lemonedo.iidx;
+package name.lemonedo.iidx.record;
 
 import java.io.BufferedInputStream;
 import java.io.File;

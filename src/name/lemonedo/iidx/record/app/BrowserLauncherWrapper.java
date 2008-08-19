@@ -1,4 +1,4 @@
-package name.lemonedo.iidx.app;
+package name.lemonedo.iidx.record.app;
 
 import name.lemonedo.util.UnaryFunction;
 import edu.stanford.ejalbert.BrowserLauncher;
@@ -10,7 +10,7 @@ import edu.stanford.ejalbert.exceptionhandler.BrowserLauncherErrorHandler;
  * 
  * @author LEE Chungmin
  */
-class BrowserLauncherWrapper extends BrowserLauncher {
+final class BrowserLauncherWrapper extends BrowserLauncher {
 
   BrowserLauncherWrapper(final UnaryFunction<Void, Exception> m)
   throws Exception {
