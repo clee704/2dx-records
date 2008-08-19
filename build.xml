@@ -1,15 +1,13 @@
 <?xml version="1.0"?>
 <project name="2dx-record" default="compile" basedir=".">
   <property name="build.dir" location="../build"/>
-  <property name="build.prod.dir" location="${build.dir}/prod"/>
-  <property name="build.test.dir" location="${build.dir}/test"/>
   <property name="src.dir" location="src"/>
   <property name="test.dir" location="test"/>
   <property name="lib.dir" location="lib"/>
 
   <path id="project.classpath">
-    <pathelement location="${build.prod.dir}"/>
-    <pathelement location="${build.test.dir}"/>
+    <pathelement location="${build.dir}"/>
+    <pathelement location="${build.dir}"/>
     <fileset dir="${lib.dir}">
       <include name="*.jar"/>
     </fileset>
@@ -20,25 +18,25 @@
   </target>
 
   <target name="prepare">
-    <mkdir dir="${build.prod.dir}"/>
-    <mkdir dir="${build.test.dir}"/>
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.dir}"/>
   </target>
 
   <target name="compile" depends="prepare">
-    <javac srcdir="${src.dir}" destdir="${build.prod.dir}">
+    <javac srcdir="${src.dir}" destdir="${build.dir}">
       <classpath refid="project.classpath"/>
     </javac>
-    <copy todir="${build.prod.dir}">
+    <copy todir="${build.dir}">
       <fileset dir="${src.dir}" includes="**/*.properties"/>
       <fileset dir="${src.dir}" includes="**/*.txt"/>
     </copy>
   </target>
 
   <target name="compile-tests" depends="compile">
-    <javac srcdir="${test.dir}" destdir="${build.test.dir}" debug="true">
+    <javac srcdir="${test.dir}" destdir="${build.dir}" debug="true">
       <classpath refid="project.classpath"/>
     </javac>
-    <copy todir="${build.test.dir}">
+    <copy todir="${build.dir}">
       <fileset dir="${test.dir}" includes="**/*.psu"/>
     </copy>
   </target>
@@ -48,7 +46,7 @@
       <classpath refid="project.classpath"/>
       <formatter type="brief" usefile="false"/>
       <batchtest>
-        <fileset dir="${build.test.dir}" includes="**/*Test.class"/>
+        <fileset dir="${build.dir}" includes="**/*Test.class"/>
       </batchtest>
     </junit>
   </target>

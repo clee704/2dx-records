@@ -6,14 +6,14 @@ import java.io.IOException;
 import name.lemonedo.util.Pair;
 
 /**
- * 
  * @author LEE Chungmin
+ *
  */
-class RecordReaderHappySky extends AbstractRecordReader {
+public class RecordReaderIidxRed extends AbstractRecordReader {
 
-  RecordReaderHappySky(File saveFile) throws IOException {
-    super(Version.HAPPY_SKY, saveFile, "happysky.txt",
-        new Pair<Integer>(114066, 26), new Pair<Integer>(128418, 2));
+  RecordReaderIidxRed(File saveFile) throws IOException {
+    super(Version.IIDX_RED, saveFile, "iidxred.txt",
+        new Pair<Integer>(115090, 26), new Pair<Integer>(128974, 2));
   }
 
   @Override

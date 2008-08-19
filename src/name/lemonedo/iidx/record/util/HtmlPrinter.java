@@ -316,6 +316,8 @@ public class HtmlPrinter {
     if (v == null)
       return new String[] {"333333", "666666"};
     switch (v) {
+    case IIDX_RED:
+      return new String[] {"400000", "990000"};
     case HAPPY_SKY:
       return new String[] {"041640", "093499"};
     case GOLD:

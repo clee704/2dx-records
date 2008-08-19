@@ -217,8 +217,8 @@ public class Record {
     private Builder() {}
 
     public Record build() {
-      if (song == null || playMode == null || djLevel == null || clear == null)
-        throw new IllegalStateException();
+      //if (song == null || playMode == null || djLevel == null || clear == null)
+      //  throw new IllegalStateException();
       return new Record(song, playMode, djLevel, clear, exScore, just, great,
           good, bad, poor, maxCombo, missCount, playCount);
     }

@@ -3,6 +3,7 @@ package name.lemonedo.iidx.record;
 import static name.lemonedo.iidx.record.Version.DISTORTED;
 import static name.lemonedo.iidx.record.Version.GOLD;
 import static name.lemonedo.iidx.record.Version.HAPPY_SKY;
+import static name.lemonedo.iidx.record.Version.IIDX_RED;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,6 +41,8 @@ public class RecordReaderFactory {
    */
   public static Version getVersion(File aPsuFile) {
     long length = aPsuFile.length();
+    if (length == 403456)
+      return IIDX_RED;
     if (length == 418816)
       return HAPPY_SKY;
     if (length == 369664)
@@ -65,6 +68,8 @@ public class RecordReaderFactory {
       throw new IllegalArgumentException("unsupported version");
 
     switch (getVersion(aPsuFile)) {
+    case IIDX_RED:
+      return new RecordReaderIidxRed(aPsuFile);
     case HAPPY_SKY:
       return new RecordReaderHappySky(aPsuFile);
     case DISTORTED:

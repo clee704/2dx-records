@@ -6,11 +6,13 @@ package name.lemonedo.iidx.record;
  */
 public enum Version {
 
-  HAPPY_SKY, DISTORTED, GOLD;
+  IIDX_RED, HAPPY_SKY, DISTORTED, GOLD;
 
   @Override
   public String toString() {
     switch (this) {
+    case IIDX_RED:
+      return "beatmaniaIIDX 11 IIDX RED";
     case HAPPY_SKY:
       return "beatmaniaIIDX 12 HAPPY SKY";
     case DISTORTED:
