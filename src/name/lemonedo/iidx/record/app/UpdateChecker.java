@@ -18,7 +18,7 @@ class UpdateChecker {
   private static final String REGEXP_1 =
       ".*<div[^<>]+id\\s*=\\s*[\"']?wikicontent[\"']?[^<>]*>.*";
   private static final String REGEXP_2 =
-      "[^<>]*<p[^<>]*>" + VERSION + ".*";
+      "[^<>]*<p[^<>]*>" + VERSION + " .*";
 
   // prevent instantiation
   private UpdateChecker() {}
