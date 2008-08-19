@@ -7,6 +7,10 @@ import static name.lemonedo.iidx.Version.HAPPY_SKY;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 public class RecordReaderFactory {
 
   /**

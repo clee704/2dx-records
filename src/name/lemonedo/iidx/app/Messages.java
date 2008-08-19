@@ -5,6 +5,10 @@ import java.util.ResourceBundle;
 
 import name.lemonedo.util.Utf8ResourceBundle;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 class Messages {
 
     private static final String BUNDLE_NAME =

@@ -3,6 +3,10 @@ package name.lemonedo.util;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 public final class Algorithms {
 
   private Algorithms() {}

@@ -21,6 +21,10 @@ import name.lemonedo.iidx.Version;
 import name.lemonedo.util.Algorithms;
 import name.lemonedo.util.UnaryPredicate;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 public class HtmlPrinter {
 
   private final String ln;

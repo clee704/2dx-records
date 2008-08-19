@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 class SongListReader {
 
   static List<Song> read(String name) {

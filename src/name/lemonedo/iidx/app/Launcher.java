@@ -3,6 +3,10 @@ package name.lemonedo.iidx.app;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 class Launcher {
 
   static {

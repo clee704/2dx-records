@@ -1,5 +1,9 @@
 package name.lemonedo.iidx;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 public class Value {
 
   public static final Value UNDEFINED = new Value(-1, 0, 0);

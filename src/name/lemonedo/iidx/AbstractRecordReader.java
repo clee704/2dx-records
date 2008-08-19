@@ -5,32 +5,41 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 
 import name.lemonedo.util.Pair;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 abstract class AbstractRecordReader implements RecordReader {
 
+  private final Version version;
   private final byte[] bin;
-  private final List<Pair<Integer>> meta;
+  private final List<Pair<Integer>> metaInfo;
   private final List<Song> songList;
   private final EnumMap<PlayMode, List<Record>> records;
 
-  private final Version version;
-
-  protected AbstractRecordReader(File psuFile, String songListFileName,
-                                 Version version, Pair<Integer>... meta)
+  AbstractRecordReader(Version version, File psuFile, String songListFileName,
+                       Pair<Integer>... metaInfo)
   throws IOException {
+    this.version = version;
     this.bin = getContent(psuFile);
-    this.meta = createImmutableList(meta);
+    this.metaInfo = createImmutableList(metaInfo);
     this.songList = SongListReader.read(songListFileName);
     this.records = new EnumMap<PlayMode, List<Record>>(PlayMode.class);
-    this.version = version;
   }
 
+  /**
+   * Returns an byte array that contains the specified file's data.
+   * 
+   * @param f the file
+   * @return an byte array that contains the specified file's data.
+   * @throws IOException if an I/O error occurs
+   */
   private static byte[] getContent(File f) throws IOException {
     byte[] bin = new byte[(int) f.length()];
     BufferedInputStream in = new BufferedInputStream(new FileInputStream(f));
@@ -42,6 +51,13 @@ abstract class AbstractRecordReader implements RecordReader {
     }
   }
 
+  /**
+   * Returns an immutable <code>List</code> of the specified elements.
+   * 
+   * @param <T> the type of elements
+   * @param elements the elements
+   * @return an immutable <code>List</code> of the specified elements.
+   */
   private static <T> List<T> createImmutableList(T... elements) {
     List<T> list = new ArrayList<T>(elements.length);
     for (T e : elements)
@@ -49,22 +65,13 @@ abstract class AbstractRecordReader implements RecordReader {
     return Collections.unmodifiableList(list);
   }
 
-  /**
-   * Returns the version of this reader.
-   * 
-   * @return the version of this reader.
-   */
+  @Override
   public Version getVersion() {
     return version;
   }
 
-  /**
-   * Returns a list of records of the specified play mode, from the save file.
-   * 
-   * @param playMode a play mode of records to read
-   * @return a list of records
-   */
-  public Collection<Record> read(PlayMode playMode) {
+  @Override
+  public List<Record> read(PlayMode playMode) {
     synchronized (records) {
       if (records.isEmpty())
         read();
@@ -73,12 +80,13 @@ abstract class AbstractRecordReader implements RecordReader {
   }
 
   private void read() {
-    byte[][] b = new byte[meta.size()][];
-    int[] pos = new int[meta.size()];
-    for (int i = 0; i < meta.size(); i++) {
-      pos[i] = meta.get(i).getFirst();
-      b[i] = new byte[meta.get(i).getSecond()];
+    byte[][] b = new byte[metaInfo.size()][];
+    int[] pos = new int[metaInfo.size()];
+    for (int i = 0; i < metaInfo.size(); i++) {
+      b[i] = new byte[metaInfo.get(i).getSecond()];
+      pos[i] = metaInfo.get(i).getFirst();
     }
+
     for (PlayMode mode : PlayMode.values()) {
       records.put(mode, new ArrayList<Record>());
       for (Song song : songList) {
@@ -98,5 +106,15 @@ abstract class AbstractRecordReader implements RecordReader {
     }
   }
 
-  protected abstract Record parseRecord(byte[][] b, Song song, PlayMode mode);
+  /**
+   * Returns a <code>Record</code> parsed from the bytes, or <code>null</code>
+   * if the bytes has no record information.
+   * 
+   * @param b bytes to be examined
+   * @param song a song of the record
+   * @param mode a play mode of the record
+   * @return a <code>Record</code> if it parsed, or <code>null</code> if the
+   *        bytes has no record information
+   */
+  abstract Record parseRecord(byte[][] b, Song song, PlayMode mode);
 }

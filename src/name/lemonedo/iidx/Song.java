@@ -2,6 +2,10 @@ package name.lemonedo.iidx;
 
 import java.util.EnumMap;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 public class Song {
 
   private static final String TO_STRING_FORMAT = "GENRE: %s, TITLE: %s, ARTIS" +

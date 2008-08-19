@@ -42,31 +42,25 @@ import name.lemonedo.iidx.PlayMode;
 import name.lemonedo.iidx.RecordReaderFactory;
 import name.lemonedo.util.UnaryFunction;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 class RecordExtractorGUI {
 
   private final JFrame frame;
-  private final JFileChooser opener;
-  private final JFileChooser saver;
   private final JTextField openField;
   private final JRadioButton separateButton;
-  private final JRadioButton mixButton;
-  private final JCheckBox noClearBox;
+  private final JCheckBox excludeNoClearBox;
   private final EnumMap<PlayMode, JCheckBox> playModeBoxes;
+  private final JFileChooser open;
+  private final JFileChooser save;
 
   private final RecordExtractor recordExtractor;
   private final Object browserLauncher;
 
   RecordExtractorGUI() {
     frame = new JFrame(getString("TITLE"));
-    opener = new JFileChooser();
-    opener.setFileFilter(new FileNameExtensionFilter(getString("PSU_DESC"),
-        "psu"));
-    opener.setAcceptAllFileFilterUsed(false);
-    saver = new JFileChooser();
-    saver.setFileFilter(new FileNameExtensionFilter(getString("HTML_DESC"),
-        "html"));
-    String defaultPath = System.getProperty("user.dir") + "/records.html";
-    saver.setSelectedFile(new File(defaultPath));
     JPanel upper = new JPanel();
     JPanel left = new JPanel();
     JPanel middle = new JPanel();
@@ -85,16 +79,16 @@ class RecordExtractorGUI {
     openField = new JTextField();
     openLabel.setLabelFor(openField);
     separateButton = new JRadioButton(getString("B_SEPARATE"));
-    mixButton = new JRadioButton(getString("B_MIX"), true);
+    JRadioButton mixButton = new JRadioButton(getString("B_MIX"), true);
     ButtonGroup group = new ButtonGroup();
     group.add(separateButton);
     group.add(mixButton);
     left.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 3));
     left.add(separateButton);
     left.add(mixButton);
-    noClearBox = new JCheckBox("No Clear", false);
+    excludeNoClearBox = new JCheckBox("No Clear", false);
     middle.setLayout(new FlowLayout(FlowLayout.LEADING, 3, 3));
-    middle.add(noClearBox);
+    middle.add(excludeNoClearBox);
     playModeBoxes = new EnumMap<PlayMode, JCheckBox>(PlayMode.class);
     playModeBoxes.put(PlayMode.SN, new JCheckBox("SN", true));
     playModeBoxes.put(PlayMode.SH, new JCheckBox("SH", true));
@@ -197,8 +191,21 @@ class RecordExtractorGUI {
       }
     });
 
+    // others
+    open = new JFileChooser();
+    open.setFileFilter(new FileNameExtensionFilter(getString("PSU_DESC"),
+        "psu"));
+    open.setAcceptAllFileFilterUsed(false);
+    save = new JFileChooser();
+    save.setFileFilter(new FileNameExtensionFilter(getString("HTML_DESC"),
+        "html"));
+    String defaultPath = System.getProperty("user.dir") + "/records.html";
+    open.setSelectedFile(new File(defaultPath));
+    save.setSelectedFile(new File(defaultPath));
     recordExtractor = new RecordExtractor();
     browserLauncher = createBrowserLauncher();
+
+    // final configure & packing
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setResizable(false);
     frame.pack();
@@ -220,19 +227,20 @@ class RecordExtractorGUI {
 
   private void checkLatestVersion() {
     try {
-      if (UpdateChecker.check())
+      if (UpdateChecker.check(3000))
         showInfoDialog(getString("M_LATEST"));
       else
         showInfoDialog(getString("M_OLD"));
     } catch (Exception e) {
+      e.printStackTrace();
       showErrorDialog(getString("E_CHECK"));
     }
   }
 
   private void getPsuFile() {
-    switch (opener.showOpenDialog(frame)) {
+    switch (open.showOpenDialog(frame)) {
     case JFileChooser.APPROVE_OPTION:
-      openField.setText(opener.getSelectedFile().getAbsolutePath());
+      openField.setText(open.getSelectedFile().getAbsolutePath());
       return;
     case JFileChooser.ERROR_OPTION:
       showErrorDialog(getString("E_OPEN_FILE"));
@@ -247,14 +255,14 @@ class RecordExtractorGUI {
       return;
     }
 
-    switch (saver.showSaveDialog(frame)) {
+    switch (save.showSaveDialog(frame)) {
     case JFileChooser.CANCEL_OPTION:
       return;
     case JFileChooser.ERROR_OPTION:
       showErrorDialog(getString("E_SAVE_FILE"));
       return;
     }
-    String path = saver.getSelectedFile().getAbsolutePath();
+    String path = save.getSelectedFile().getAbsolutePath();
     File documentFile = new File(ensureExtension(path, ".html"));
     if (documentFile.exists()) {
       int r = showConfirmDialog(frame, getString("M_OVERWRITE"),
@@ -268,7 +276,7 @@ class RecordExtractorGUI {
       for (PlayMode mode : PlayMode.values())
         if (playModeBoxes.get(mode).isSelected())
           selected.add(mode);
-      recordExtractor.setExcludeNoClear(noClearBox.isSelected());
+      recordExtractor.setExcludeNoClear(excludeNoClearBox.isSelected());
       recordExtractor.setSortSeparately(separateButton.isSelected());
       boolean r = recordExtractor.extract(psuFile, documentFile, selected); 
       if (!r)

@@ -1,5 +1,9 @@
 package name.lemonedo.iidx;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 public enum Version {
 
   HAPPY_SKY, DISTORTED, GOLD;

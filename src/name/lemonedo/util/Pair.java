@@ -1,5 +1,9 @@
 package name.lemonedo.util;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 public class Pair<E> {
 
   private final E e1;

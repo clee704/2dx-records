@@ -2,6 +2,10 @@ package name.lemonedo.iidx;
 
 import java.util.Comparator;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 public class Record {
 
   public static enum DjLevel {

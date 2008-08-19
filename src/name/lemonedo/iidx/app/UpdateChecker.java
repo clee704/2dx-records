@@ -5,6 +5,10 @@ import java.util.Scanner;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * 
+ * @author LEE Chungmin
+ */
 class UpdateChecker {
 
   private static final String VERSION = "0.20r28";
@@ -16,10 +20,11 @@ class UpdateChecker {
   private static final String REGEXP_2 =
       "[^<>]*<p[^<>]*>" + VERSION + ".*";
 
-  static boolean check() throws IOException {
+  static boolean check(int timeout) throws IOException {
     Scanner sc = null;
     try {
       URLConnection conn = new URL(UPDATE_CHECK_URL).openConnection();
+      conn.setReadTimeout(timeout);
       sc = new Scanner(conn.getInputStream(), "UTF-8");
       while (sc.hasNextLine()) {
         String line = sc.nextLine();

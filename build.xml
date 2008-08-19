@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<project name="2dx-records" default="compile" basedir=".">
+  <property name="build.dir" location="../build"/>
+  <property name="src.dir" location="src"/>
+  <property name="lib.dir" location="lib"/>
+  <path id="project.classpath">
+	<pathelement location="${build.dir}"/>
+	<fileset dir="${lib.dir}">
+	  <include name="*.jar"/>
+	</fileset>
+  </path>
+  <target name="prepare">
+	<mkdir dir="${build.dir}"/>
+  </target>
+  <target name="compile" depends="prepare">
+	<javac srcdir="${src.dir}" destdir="${build.dir}">
+	  <classpath refid="project.classpath"/>
+	</javac>
+  	<copy todir="${build.dir}">
+  	  <fileset dir="${src.dir}" includes="**/*.properties"/>
+      <fileset dir="${src.dir}" includes="**/*.txt"/>
+  	</copy>
+  </target>
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+  </target>
+</project>
