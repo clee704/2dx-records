@@ -7,10 +7,10 @@ package name.lemonedo.iidx.record;
  */
 class RecordReaderHelper {
 
-  static Record parseRecord(byte[][] b, Song song, PlayMode mode) {
+  static Record parseRecord(byte[][] b, Version v, Song s, PlayMode m) {
     if (b[0][20] == 9)
       return null;
-    return Record.newBuilder().song(song).playMode(mode)
+    return Record.newBuilder().version(v).song(s).playMode(m)
         .djLevel(Record.DjLevel.values()[b[0][20] & 0x0F])
         .clear(parseClear(b[0][18], b[0][21]))
         .exScore(((b[0][15] & 0xFF) << 8) + (b[0][14] & 0xFF))

@@ -21,5 +21,5 @@ public interface RecordReader {
    * @param playMode a play mode of records to read
    * @return a list of records
    */
-  public List<Record> read(PlayMode mode);
+  public List<Record> read(PlayMode playMode);
 }

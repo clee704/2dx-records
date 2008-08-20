@@ -6,30 +6,48 @@ package name.lemonedo.iidx.record;
  */
 public enum PlayMode {
 
-  SN, SH, SA, DN, DH, DA;
+  SN {
+    public boolean isAnother() { return false; }
+    public boolean isDoubleMode() { return false; };
+    public String getOldName() { return "L7"; }
+  },
+  SH {
+    public boolean isAnother() { return false; }
+    public boolean isDoubleMode() { return false; };
+    public String getOldName() { return "7K"; }
+  },
+  SA {
+    public boolean isAnother() { return true; }
+    public boolean isDoubleMode() { return false; };
+    public String getOldName() { return "A7"; }
+  },
+  DN {
+    public boolean isAnother() { return false; }
+    public boolean isDoubleMode() { return true; };
+    public String getOldName() { return "L14"; }
+  },
+  DH {
+    public boolean isAnother() { return false; }
+    public boolean isDoubleMode() { return true; };
+    public String getOldName() { return "14K"; }
+  },
+  DA {
+    public boolean isAnother() { return true; }
+    public boolean isDoubleMode() { return true; };
+    public String getOldName() { return "A14"; }
+  };
 
   public boolean isSingleMode() {
-    switch (this) {
-    case SN:
-    case SH:
-    case SA:
-      return true;
-    default:
-      return false;
-    }
+    return !isDoubleMode();
   }
 
-  public boolean isDoubleMode() {
-    return !isSingleMode();
-  }
+  public abstract boolean isDoubleMode();
+  public abstract boolean isAnother();
 
-  public boolean isAnother() {
-    switch (this) {
-    case SA:
-    case DA:
-      return true;
-    default:
-        return false;
-    }
-  }
+  /**
+   * Returns a string reperesenting the old mode name. (e.g. 'L7')
+   * 
+   * @return a string reperesenting the old mode name
+   */
+  public abstract String getOldName();
 }

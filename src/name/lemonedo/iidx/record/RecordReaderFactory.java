@@ -31,8 +31,7 @@ public class RecordReaderFactory {
 
   /**
    * Returns a <code>Version</code> which corresponds with the specified PSU
-   * file, or <code>null</code> if the file is not of of the supported
-   * versions.
+   * file, or <code>null</code> if the file is not of the supported versions.
    * 
    * @param aPsuFile a PSU file
    * @return a <code>Version</code> which corresponds with the specified PSU
@@ -56,7 +55,7 @@ public class RecordReaderFactory {
   /**
    * Returns an <code>RecordReader</code> with the specified save file.
    * 
-   * @param psuFile the save file
+   * @param aPsuFile the save file
    * @return an <code>RecordReader</code> with the specified save file as a
    *        source
    * @throws IOException if an I/O error occurs

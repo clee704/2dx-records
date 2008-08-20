@@ -46,7 +46,7 @@ import name.lemonedo.util.UnaryFunction;
  * 
  * @author LEE Chungmin
  */
-class RecordExtractorGUI {
+public class RecordExtractorGUI {
 
   private final JFrame frame;
   private final JTextField openField;
@@ -59,7 +59,7 @@ class RecordExtractorGUI {
   private final RecordExtractor recordExtractor;
   private final Object browserLauncher;
 
-  RecordExtractorGUI() {
+  public RecordExtractorGUI() {
     frame = new JFrame(getString("TITLE"));
     JPanel upper = new JPanel();
     JPanel left = new JPanel();

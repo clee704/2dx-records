@@ -1,11 +1,15 @@
 package name.lemonedo.iidx.record;
 
 /**
+ * A common value in IIDX. The valid range is 0-9999 (inclusive).
  * 
  * @author LEE Chungmin
  */
 public class CommonValue implements Value {
 
+  /**
+   * A constant for undefined <code>CommonValue</code>.
+   */
   public static final CommonValue UNDEFINED = new CommonValue(-1);
 
   private final int value;
@@ -14,6 +18,13 @@ public class CommonValue implements Value {
     this.value = value;
   }
 
+  /**
+   * Returns a <code>CommonValue</code> for <code>value</code>. It will be
+   * undefined if <code>value</code> is not in the range 0-9999 (inclusive).
+   * 
+   * @param value a value
+   * @return a <code>CommonValue</code> for <code>value</code>
+   */
   public static CommonValue newInstance(int value) {
     if (value < 0 || value > 9999)
       return UNDEFINED;
@@ -21,6 +32,14 @@ public class CommonValue implements Value {
       return new CommonValue(value);
   }
 
+  /**
+   * Returns a <code>CommonValue</code> for <code>value</code>. It will be
+   * undefined if <code>value</code> is not in the range 0-9999 (inclusive) or
+   * does not represent a decimal integer.
+   * 
+   * @param value a value representing a decimal integer
+   * @return a <code>CommonValue</code> for <code>value</code>
+   */
   public static CommonValue newInstance(String value) {
     if (value.matches("\\d+"))
       return newInstance(Integer.parseInt(value));

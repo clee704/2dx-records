@@ -24,6 +24,9 @@ import name.lemonedo.util.UnaryPredicate;
  * 
  * @author LEE Chungmin
  */
+/*
+ * FIXME dirty implementation
+ */
 public class HtmlPrinter {
 
   private final String newLine;
@@ -202,12 +205,13 @@ public class HtmlPrinter {
         boolean oldSong = s.isOldSong();
         if (title.contains("&"))
           title = title.replace("&", "&amp;");
-        entries.format(entryLayout, oldSong ? "old" : "new", title, playMode,
+        String modeName = toString(playMode, r.getVersion());
+        entries.format(entryLayout, oldSong ? "old" : "new", title, modeName,
             r.getDifficulty(), toImgTag(r.getDjLevel()), r.getExScore(),
             r.getScoreRate(), r.getTotalNotes(), r.getJust(), r.getGreat(),
             r.getGood(), r.getBad(), r.getPoor(), toImgTag(r.getClear()),
             r.getMaxCombo(), r.getMissCount(), r.getPlayCount(),
-            (int) (1.98 * r.getScoreRate()));
+            (int) (1.98 * r.getScoreRate()), toClassName(playMode));
       }
       f.format(tableLayout, label, entries);
     }
@@ -246,14 +250,26 @@ public class HtmlPrinter {
     PlayMode m = r.getPlayMode();
     if (s.hasAnotherSong() && (m == PlayMode.SA || m == PlayMode.DA))
       s = s.getAnotherSong();
+    String modeName = toString(m, r.getVersion());
     return String.format(
         "'%s', %s, '%s', %s, '%s', %s, %.02f, %s, %s, "
             + "%s, %s, %s, %s, '%s', %s, %s, %s",
-        s.getTitle().replaceAll("'", "\\\\'"), s.isOldSong(), m,
+        s.getTitle().replaceAll("'", "\\\\'"), s.isOldSong(), modeName,
         r.getDifficulty(), r.getDjLevel(), r.getExScore(), r.getScoreRate(),
         r.getTotalNotes(), r.getJust(), r.getGreat(), r.getGood(), r.getBad(),
         r.getPoor(), toString(r.getClear()), r.getMaxCombo(), r.getMissCount(),
-        r.getPlayCount()).replaceAll(", -,", ", '-',");
+        r.getPlayCount())
+        .replaceAll(", -,", ", '-',")
+        .replaceAll(", (\\d+)\\+,", ", '$1\\+',");
+  }
+
+  private String toString(PlayMode m, Version v) {
+    switch (v) {
+    case IIDX_RED:
+      return m.getOldName();
+    default:
+      return m.toString();
+    }
   }
 
   private String toString(Record.Clear clear) {
@@ -272,6 +288,22 @@ public class HtmlPrinter {
       return "FC";
     default:
       return clear.toString();
+    }
+  }
+
+  private String toClassName(PlayMode mode) {
+    switch (mode) {
+    case SN:
+    case DN:
+      return "n";
+    case SH:
+    case DH:
+      return "h";
+    case SA:
+    case DA:
+      return "a";
+    default:
+      return null;
     }
   }
 
@@ -318,7 +350,7 @@ public class HtmlPrinter {
     case HAPPY_SKY:
       return new String[] {"041640", "093499"};
     case GOLD:
-      return new String[] {"403511", "997e28"};
+      return new String[] {"403819", "99863c"};
     case DISTORTED:
     default:
       return new String[] {"333333", "666666"};

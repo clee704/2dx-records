@@ -3,8 +3,6 @@ package name.lemonedo.iidx.record;
 import java.io.File;
 import java.io.IOException;
 
-import name.lemonedo.util.Pair;
-
 /**
  * 
  * @author LEE Chungmin
@@ -12,14 +10,14 @@ import name.lemonedo.util.Pair;
 class RecordReaderGold extends AbstractRecordReader {
 
   RecordReaderGold(File saveFile) throws IOException {
-    super(Version.GOLD, saveFile, "gold.txt", new Pair<Integer>(99480, 20));
+    super(Version.GOLD, saveFile, "gold.txt", new MetaInfo(99480, 20));
   }
 
   @Override
   protected Record parseRecord(byte[][] b, Song song, PlayMode mode) {
     if ((b[0][13] & 0xFF) == 0x90)
       return null;
-    return Record.newBuilder().song(song).playMode(mode)
+    return Record.newBuilder().version(getVersion()).song(song).playMode(mode)
         .djLevel(Record.DjLevel.values()[down(b[0][13], 4, 4)])
         .clear(Record.Clear.values()[down(b[0][17], 3, 5)])
         .exScore(up(b[0][11], 6, 8) + up(b[0][10], 8, 0))

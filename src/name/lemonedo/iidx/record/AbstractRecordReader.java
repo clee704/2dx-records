@@ -26,18 +26,25 @@ abstract class AbstractRecordReader implements RecordReader {
 
   private final Version version;
   private final byte[] bin;
-  private final List<Pair<Integer>> metaInfo;
+  private final List<MetaInfo> metaInfo;
   private final List<Song> songList;
   private final EnumMap<PlayMode, List<Record>> records;
 
   AbstractRecordReader(Version version, File psuFile, String songListFileName,
-                       Pair<Integer>... metaInfo)
+                       MetaInfo... metaInfo)
   throws IOException {
     this.version = version;
     this.bin = getContent(psuFile);
     this.metaInfo = createImmutableList(metaInfo);
     this.songList = SongListReader.read(songListFileName);
     this.records = new EnumMap<PlayMode, List<Record>>(PlayMode.class);
+  }
+
+  static class MetaInfo extends Pair<Integer> {
+
+    MetaInfo(int pos, int inc) {
+      super(pos, inc);
+    }
   }
 
   /**
@@ -66,7 +73,7 @@ abstract class AbstractRecordReader implements RecordReader {
    * @return an immutable <code>List</code> of the specified elements.
    */
   private static <T> List<T> createImmutableList(T... elements) {
-    List<T> list = new ArrayList<T>(elements.length);
+    List<T> list = new ArrayList<T>();
     for (T e : elements)
       list.add(e);
     return Collections.unmodifiableList(list);

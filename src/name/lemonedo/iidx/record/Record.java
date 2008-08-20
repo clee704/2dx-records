@@ -32,6 +32,7 @@ public class Record {
     };
   }
 
+  private final Version version;
   private final Song song;
   private final Value difficulty;
   private final Value totalNotes;
@@ -50,11 +51,12 @@ public class Record {
   private final Value missCount;
   private final Value playCount;
 
-  private Record(Song song, PlayMode playMode, DjLevel djLevel, Clear clear,
-                 int exScore, int just, int great, int good, int bad, int poor,
-                 int maxCombo, int missCount, int playCount) {
+  private Record(Version version, Song song, PlayMode playMode, DjLevel djLevel,
+                 Clear clear, int exScore, int just, int great, int good,
+                 int bad, int poor, int maxCombo, int missCount, int playCount) {
     if (song.hasAnotherSong() && playMode.isAnother())
       song = song.getAnotherSong();
+    this.version = version;
     this.song = song;
     this.difficulty = song.getDifficulty(playMode);
     this.totalNotes = song.getNumNotes(playMode);
@@ -74,6 +76,10 @@ public class Record {
 
   public static Builder newBuilder() {
     return new Builder();
+  }
+
+  public Version getVersion() {
+    return version;
   }
 
   public Song getSong() {
@@ -173,6 +179,7 @@ public class Record {
 
   public static class Builder {
 
+    private Version version;
     private Song song;
     private PlayMode playMode;
     private DjLevel djLevel;
@@ -190,10 +197,16 @@ public class Record {
     private Builder() {}
 
     public Record build() {
-      //if (song == null || playMode == null || djLevel == null || clear == null)
-      //  throw new IllegalStateException();
-      return new Record(song, playMode, djLevel, clear, exScore, just, great,
-          good, bad, poor, maxCombo, missCount, playCount);
+      if (version == null || song == null || playMode == null || djLevel == null
+          || clear == null)
+        throw new IllegalStateException();
+      return new Record(version, song, playMode, djLevel, clear, exScore, just,
+          great, good, bad, poor, maxCombo, missCount, playCount);
+    }
+
+    public Builder version(Version val) {
+      version = val;
+      return this;
     }
 
     public Builder song(Song val) {

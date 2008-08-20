@@ -1,7 +1,16 @@
 package name.lemonedo.iidx.record;
 
+/**
+ * Difficulty for a song with a play mode. The valid range is
+ * 1-12 (inclusive).
+ * 
+ * @author LEE Chungmin
+ */
 public class Difficulty implements Value {
 
+  /**
+   * A constant for undefined <code>Difficulty</code>.
+   */
   public static final Difficulty UNDEFINED = new Difficulty(-1, false);
 
   private final int value;
@@ -12,6 +21,13 @@ public class Difficulty implements Value {
     this.plus = plus;
   }
 
+  /**
+   * Returns a <code>Difficulty</code> for <code>value</code>. It will be
+   * undefined if <code>value</code> is not in the range 1-12 (inclusive).
+   * 
+   * @param value a value
+   * @return a <code>Difficulty</code> for <code>value</code>
+   */
   public static Difficulty newInstance(int value) {
     return newInstance(value, false);
   }
@@ -23,6 +39,15 @@ public class Difficulty implements Value {
       return new Difficulty(value, plus);
   }
 
+  /**
+   * Returns a <code>Difficulty</code> for <code>value</code>. It will be
+   * undefined if <code>value</code> is not in the range 1-12 (inclusive).
+   * A '+' sign in <code>value</code> will be properly interpreted. For example,
+   * '8+' will be treated as '9'. (for {@link #toString()} again '8+') 
+   * 
+   * @param value a value
+   * @return a <code>Difficulty</code> for <code>value</code>
+   */
   public static Difficulty newInstance(String value) {
     if (value.matches("\\d+"))
       return newInstance(Integer.parseInt(value), false);
@@ -74,5 +99,4 @@ public class Difficulty implements Value {
       return -1;
     return toInt() - o.toInt();
   }
-
 }
