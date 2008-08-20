@@ -1,5 +1,12 @@
 package name.lemonedo.iidx.record;
 
+import static name.lemonedo.iidx.record.PlayMode.DA;
+import static name.lemonedo.iidx.record.PlayMode.DH;
+import static name.lemonedo.iidx.record.PlayMode.DN;
+import static name.lemonedo.iidx.record.PlayMode.SA;
+import static name.lemonedo.iidx.record.PlayMode.SH;
+import static name.lemonedo.iidx.record.PlayMode.SN;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -87,7 +94,7 @@ abstract class AbstractRecordReader implements RecordReader {
       pos[i] = metaInfo.get(i).getFirst();
     }
 
-    for (PlayMode mode : PlayMode.values()) {
+    for (PlayMode mode : parseOrder(version)) {
       records.put(mode, new ArrayList<Record>());
       for (Song song : songList) {
         fillBytesFromBin(b, pos);
@@ -103,6 +110,15 @@ abstract class AbstractRecordReader implements RecordReader {
     for (int i = 0; i < b.length; i++) {
       System.arraycopy(bin, pos[i], b[i], 0, b[i].length);
       pos[i] += b[i].length;
+    }
+  }
+
+  private PlayMode[] parseOrder(Version version) {
+    switch (version) {
+    case IIDX_RED:
+      return new PlayMode[] {SH, SN, SA, DH, DN, DA};
+    default:
+      return PlayMode.values();
     }
   }
 

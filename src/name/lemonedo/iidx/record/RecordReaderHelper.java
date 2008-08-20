@@ -1,7 +1,7 @@
 package name.lemonedo.iidx.record;
 
 /**
- * For IIDX RED - DistorteD.
+ * For IIDX RED - DistorteD. From GOLD, the parsing method is different.
  * 
  * @author LEE Chungmin
  */

@@ -22,4 +22,14 @@ public enum PlayMode {
   public boolean isDoubleMode() {
     return !isSingleMode();
   }
+
+  public boolean isAnother() {
+    switch (this) {
+    case SA:
+    case DA:
+      return true;
+    default:
+        return false;
+    }
+  }
 }

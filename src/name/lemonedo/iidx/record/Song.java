@@ -23,15 +23,15 @@ public class Song {
   private final Song another;
 
   private Song(String genre, String title, String artist, String bpm,
-               boolean oldSong, EnumMap<PlayMode, Value> difficulties,
-               EnumMap<PlayMode, Value> numNotes, Song another) {
+               boolean oldSong, EnumMap<PlayMode, Value> difficulties2,
+               EnumMap<PlayMode, Value> numNotes2, Song another) {
     this.genre = genre;
     this.title = title;
     this.artist = artist;
     this.bpm = bpm;
     this.oldSong = oldSong;
-    this.difficulties = difficulties.clone();
-    this.numNotes = numNotes.clone();
+    this.difficulties = difficulties2.clone();
+    this.numNotes = numNotes2.clone();
     this.another = another;
   }
 
@@ -109,8 +109,8 @@ public class Song {
       difficulties = new EnumMap<PlayMode, Value>(PlayMode.class);
       numNotes = new EnumMap<PlayMode, Value>(PlayMode.class);
       for (PlayMode m : PlayMode.values()) {
-        difficulties.put(m, Value.UNDEFINED);
-        numNotes.put(m, Value.UNDEFINED);
+        difficulties.put(m, CommonValue.UNDEFINED);
+        numNotes.put(m, CommonValue.UNDEFINED);
       }
     }
 
@@ -146,13 +146,13 @@ public class Song {
       return this;
     }
 
-    public Builder difficulty(int val, PlayMode m) {
-      difficulties.put(m, Value.create(val, 1, 12));
+    public Builder difficulty(Value val, PlayMode m) {
+      difficulties.put(m, val);
       return this;
     }
 
-    public Builder numNotes(int val, PlayMode m) {
-      numNotes.put(m, Value.create(val, 1, 9999));
+    public Builder numNotes(Value val, PlayMode m) {
+      numNotes.put(m, val);
       return this;
     }
 

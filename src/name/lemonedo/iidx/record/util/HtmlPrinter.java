@@ -1,8 +1,5 @@
 package name.lemonedo.iidx.record.util;
 
-import static name.lemonedo.iidx.record.PlayMode.DA;
-import static name.lemonedo.iidx.record.PlayMode.SA;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -199,7 +196,7 @@ public class HtmlPrinter {
       for (Record r : toPrint.get(label)) {
         Song s = r.getSong();
         PlayMode playMode = r.getPlayMode();
-        if (s.hasAnotherSong() && (playMode == SA || playMode == DA))
+        if (s.hasAnotherSong() && playMode.isAnother())
           s = s.getAnotherSong();
         String title = s.getTitle();
         boolean oldSong = s.isOldSong();

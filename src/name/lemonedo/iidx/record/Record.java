@@ -8,21 +8,6 @@ import java.util.Comparator;
  */
 public class Record {
 
-  public static enum DjLevel {
-    AAA, AA, A, B, C, D, E, F
-  }
-
-  public static enum Clear {
-
-    NO_PLAY, NO_CLEAR, ASSIST_CLEAR, EASY_CLEAR, CLEAR, HARD_CLEAR, FULL_COMBO,
-    PERFECT, FAILED;
-
-    @Override
-    public String toString() {
-      return super.toString().replace("_", " ");
-    }
-  }
-
   public static final Comparator<Record> TITLE_ORDER;
   public static final Comparator<Record> DIFFICULTY_ORDER;
   public static final Comparator<Record> PLAY_MODE_ORDER;
@@ -37,14 +22,7 @@ public class Record {
     };
     DIFFICULTY_ORDER = new Comparator<Record>() {
       public int compare(Record o1, Record o2) {
-        Value d1 = o1.getDifficulty();
-        Value d2 = o2.getDifficulty();
-        if (d1.isUndefined())
-          return 1;
-        else if (d2.isUndefined())
-          return -1;
-        else
-          return d1.toInt() - d2.toInt();
+        return o1.getDifficulty().compareTo(o2.getDifficulty());
       };
     };
     PLAY_MODE_ORDER = new Comparator<Record>() {
@@ -73,10 +51,9 @@ public class Record {
   private final Value playCount;
 
   private Record(Song song, PlayMode playMode, DjLevel djLevel, Clear clear,
-                int exScore, int just, int great, int good, int bad, int poor,
-                int maxCombo, int missCount, int playCount) {
-    if (song.hasAnotherSong() &&
-        (playMode == PlayMode.SA || playMode == PlayMode.DA))
+                 int exScore, int just, int great, int good, int bad, int poor,
+                 int maxCombo, int missCount, int playCount) {
+    if (song.hasAnotherSong() && playMode.isAnother())
       song = song.getAnotherSong();
     this.song = song;
     this.difficulty = song.getDifficulty(playMode);
@@ -84,23 +61,19 @@ public class Record {
     this.playMode = playMode;
     this.djLevel = djLevel;
     this.clear = clear;
-    this.exScore = createCommonValue(exScore);
-    this.just = createCommonValue(just);
-    this.great = createCommonValue(great);
-    this.good = createCommonValue(good);
-    this.bad = createCommonValue(bad);
-    this.poor = createCommonValue(poor);
-    this.maxCombo = createCommonValue(maxCombo);
-    this.missCount = createCommonValue(missCount);
-    this.playCount = createCommonValue(playCount);
+    this.exScore = CommonValue.newInstance(exScore);
+    this.just = CommonValue.newInstance(just);
+    this.great = CommonValue.newInstance(great);
+    this.good = CommonValue.newInstance(good);
+    this.bad = CommonValue.newInstance(bad);
+    this.poor = CommonValue.newInstance(poor);
+    this.maxCombo = CommonValue.newInstance(maxCombo);
+    this.missCount = CommonValue.newInstance(missCount);
+    this.playCount = CommonValue.newInstance(playCount);
   }
 
   public static Builder newBuilder() {
     return new Builder();
-  }
-
-  private Value createCommonValue(int val) {
-    return Value.create(val, 0, 9999);
   }
 
   public Song getSong() {
@@ -286,6 +259,21 @@ public class Record {
     public Builder playCount(int val) {
       playCount = val;
       return this;
+    }
+  }
+
+  public static enum DjLevel {
+    AAA, AA, A, B, C, D, E, F
+  }
+
+  public static enum Clear {
+
+    NO_PLAY, NO_CLEAR, ASSIST_CLEAR, EASY_CLEAR, CLEAR, HARD_CLEAR, FULL_COMBO,
+    PERFECT, FAILED;
+
+    @Override
+    public String toString() {
+      return super.toString().replace("_", " ");
     }
   }
 }

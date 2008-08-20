@@ -9,8 +9,8 @@
     tr.label { background-color: #%6$s; }
     th { font-size: 13px; padding: 2px; }
     th.ex { width: 200px; }
-    th.notes { width: 48px; }
-    td { padding: 2px; }
+    th.notes { width: 44px; }
+    td { padding: 1px 3px 1px 3px; }
     td.SN { text-align: center; color: #0099FF; }
     td.DN { text-align: center; color: #0099FF; }
     td.SH { text-align: center; color: #ffaa00; }
@@ -79,14 +79,14 @@
         cells[1].innerHTML = r['playMode'];
         cells[1].className = r['playMode'];
         cells[2].innerHTML = r['difficulty'];
-        cells[3].innerHTML = toImgTag(r['djLevel']);
-        cells[4].innerHTML = r['exScore'] + ' <small>(' + r['scoreRate'].toFixed(2) + '%%)<\/small>';
-        cells[5].innerHTML = r['totalNotes'];
+        cells[4].innerHTML = toImgTag(r['djLevel']);
+        cells[5].innerHTML = r['exScore'] + ' <small>(' + r['scoreRate'].toFixed(2) + '%%)<\/small>';
+        cells[3].innerHTML = r['totalNotes'];
         cells[6].innerHTML = r['just'];
         cells[7].innerHTML = r['great'];
         cells[8].innerHTML = r['good'];
         cells[9].innerHTML = r['bad'];
-        cells[10].innerHTML = r['poor']; 
+        cells[10].innerHTML = r['poor'];
         cells[11].innerHTML = toImgTag(r['clear']);
         cells[12].innerHTML = r['maxCombo'];
         cells[13].innerHTML = r['missCount'];
@@ -164,10 +164,11 @@
           return 0;
         else
           return 1;
-      else if (v2 == '-')
+      if (v2 == '-')
         return -1;
-      else
-        return v1 - v2;
+      v1 = (v1 == '8+' ? 9 : v1);
+      v2 = (v2 == '8+' ? 9 : v2);
+      return v1 - v2;
     }
 
     function toInt(e) {

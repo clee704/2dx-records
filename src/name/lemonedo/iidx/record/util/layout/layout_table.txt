@@ -5,9 +5,9 @@
         <th><a onclick="sort('%1$s', 'title');">TITLE</a> <small><a onclick="sort('%1$s', 'oldSong');">(NEW/OLD)</a></small></th>
         <th><a onclick="sort('%1$s', 'playMode');">M</a></th>
         <th><a onclick="sort('%1$s', 'difficulty');">DIFF</a></th>
+        <th><a onclick="sort('%1$s', 'totalNotes');">NOTES</a></th>
         <th><a onclick="sort('%1$s', 'djLevel');">DJL</a></th>
         <th class="ex"><a onclick="sort('%1$s', 'exScore');">EX SCORE</a> <small><a onclick="sort('%1$s', 'scoreRate');">(SCORE RATE)</a></small></th>
-        <th class="notes"><a onclick="sort('%1$s', 'totalNotes');">NOTES</a></th>
         <th class="notes"><a onclick="sort('%1$s', 'just');">JUST</a></th>
         <th class="notes"><a onclick="sort('%1$s', 'great');">GREAT</a></th>
         <th class="notes"><a onclick="sort('%1$s', 'good');">GOOD</a></th>

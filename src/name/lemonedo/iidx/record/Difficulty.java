@@ -1,0 +1,78 @@
+package name.lemonedo.iidx.record;
+
+public class Difficulty implements Value {
+
+  public static final Difficulty UNDEFINED = new Difficulty(-1, false);
+
+  private final int value;
+  private final boolean plus;
+
+  private Difficulty(int value, boolean plus) {
+    this.value = value;
+    this.plus = plus;
+  }
+
+  public static Difficulty newInstance(int value) {
+    return newInstance(value, false);
+  }
+
+  private static Difficulty newInstance(int value, boolean plus) {
+    if (value < 1 || value > 12)
+      return UNDEFINED;
+    else
+      return new Difficulty(value, plus);
+  }
+
+  public static Difficulty newInstance(String value) {
+    if (value.matches("\\d+"))
+      return newInstance(Integer.parseInt(value), false);
+    else if (value.matches("\\d+\\+"))
+      return newInstance(
+          Integer.parseInt(value.substring(0, value.length() - 1)) + 1, true);
+    else
+      return UNDEFINED;
+  }
+
+  public boolean isDefined() {
+    return !isUndefined();
+  }
+
+  public boolean isUndefined() {
+    return this == UNDEFINED;
+  }
+
+  public int toInt() {
+    if (isUndefined())
+      throw new IllegalStateException("undefined");
+    return value;
+  }
+
+  @Override
+  public String toString() {
+    if (isUndefined())
+      return "-";
+    if (plus)
+      return String.valueOf(value - 1) + "+";
+    else
+      return String.valueOf(value);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    return (o == this) || ((o instanceof Difficulty)
+        && ((Difficulty) o).value == value && o != UNDEFINED);
+  }
+
+  @Override
+  public int compareTo(Value o) {
+    if (isUndefined())
+      if (o.isUndefined())
+        return 0;
+      else
+        return 1;
+    if (o.isUndefined())
+      return -1;
+    return toInt() - o.toInt();
+  }
+
+}

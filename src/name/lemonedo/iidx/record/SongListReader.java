@@ -38,13 +38,6 @@ class SongListReader {
     return songList;
   }
 
-  private static int parseInt(String n) {
-    if (!n.matches("\\d+"))
-      return -1;
-    else
-      return Integer.parseInt(n);
-  }
-
   private static Song parseSong(String[] args) {
     return parseSong(args, null);
   }
@@ -52,17 +45,17 @@ class SongListReader {
   private static Song parseSong(String[] args, Song another) {
     return Song.newBuilder().artist(args[2]).title(args[1]).genre(args[0])
         .bpm(args[3]).oldSong(args[16].equals("yes")).another(another)
-        .difficulty(parseInt(args[4]), PlayMode.SN)
-        .difficulty(parseInt(args[6]), PlayMode.SH)
-        .difficulty(parseInt(args[8]), PlayMode.SA)
-        .difficulty(parseInt(args[10]), PlayMode.DN)
-        .difficulty(parseInt(args[12]), PlayMode.DH)
-        .difficulty(parseInt(args[14]), PlayMode.DA)
-        .numNotes(parseInt(args[5]), PlayMode.SN)
-        .numNotes(parseInt(args[7]), PlayMode.SH)
-        .numNotes(parseInt(args[9]), PlayMode.SA)
-        .numNotes(parseInt(args[11]), PlayMode.DN)
-        .numNotes(parseInt(args[13]), PlayMode.DH)
-        .numNotes(parseInt(args[15]), PlayMode.DA).build();
+        .difficulty(Difficulty.newInstance(args[4]), PlayMode.SN)
+        .difficulty(Difficulty.newInstance(args[6]), PlayMode.SH)
+        .difficulty(Difficulty.newInstance(args[8]), PlayMode.SA)
+        .difficulty(Difficulty.newInstance(args[10]), PlayMode.DN)
+        .difficulty(Difficulty.newInstance(args[12]), PlayMode.DH)
+        .difficulty(Difficulty.newInstance(args[14]), PlayMode.DA)
+        .numNotes(CommonValue.newInstance(args[5]), PlayMode.SN)
+        .numNotes(CommonValue.newInstance(args[7]), PlayMode.SH)
+        .numNotes(CommonValue.newInstance(args[9]), PlayMode.SA)
+        .numNotes(CommonValue.newInstance(args[11]), PlayMode.DN)
+        .numNotes(CommonValue.newInstance(args[13]), PlayMode.DH)
+        .numNotes(CommonValue.newInstance(args[15]), PlayMode.DA).build();
   }
 }
