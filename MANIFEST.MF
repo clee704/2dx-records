@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 Sealed: true
-Main-Class: name.lemonedo.iidx.app.Launcher
+Main-Class: name.lemonedo.iidx.record.app.Launcher
 Class-Path: BrowserLauncher2.jar

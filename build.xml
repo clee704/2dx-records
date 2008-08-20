@@ -29,7 +29,6 @@
   <target name="compile" depends="prepare">
     <javac srcdir="${src.dir}" destdir="${build.dir}">
       <classpath refid="project.classpath"/>
-      <compilerarg value="-Xlint:unchecked"/>
     </javac>
     <copy todir="${build.dir}">
       <fileset dir="${src.dir}" includes="**/*.properties"/>
