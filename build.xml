@@ -1,10 +1,13 @@
 <?xml version="1.0"?>
 <project name="2dx-record" default="compile" basedir=".">
-  <property name="build.dir" location="../build"/>
+  <property name="build.dir" location="build"/>
   <property name="src.dir" location="src"/>
-  <property name="doc.dir" location="../doc"/>
+  <property name="doc.dir" location="doc"/>
   <property name="test.dir" location="test"/>
   <property name="lib.dir" location="lib"/>
+  <property name="release.dir" location="releases"/>
+  <property name="version" value="0_30"/>
+  <property name="launch4j.dir" location="D:/app/launch4j"/>
 
   <path id="project.classpath">
     <pathelement location="${build.dir}"/>
@@ -58,5 +61,22 @@
       <classpath refid="project.classpath"/>
       <link href="http://java.sun.com/javase/6/docs/api/"/>
     </javadoc>
+  </target>
+
+  <taskdef name="launch4j"
+      classname="net.sf.launch4j.ant.Launch4jTask"
+      classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar"/>
+
+  <target name="release-files" depends="clean, compile">
+    <jar destfile="${release.dir}/2dx-record-${version}.jar" manifest="MANIFEST.MF">
+      <fileset dir="${build.dir}"/>
+    </jar>
+    <zip destfile="${release.dir}/2dx-record-src-${version}.zip">
+      <zipfileset dir="${src.dir}"/>
+    </zip>
+    <launch4j configFile="launch4j-config.xml"
+        jar="${release.dir}/2dx-record-${version}.jar"
+        outfile="${release.dir}/2dx-record-${version}.exe">
+    </launch4j>
   </target>
 </project>
