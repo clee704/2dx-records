@@ -2,6 +2,7 @@
 <project name="2dx-record" default="compile" basedir=".">
   <property name="build.dir" location="../build"/>
   <property name="src.dir" location="src"/>
+  <property name="doc.dir" location="../doc"/>
   <property name="test.dir" location="test"/>
   <property name="lib.dir" location="lib"/>
 
@@ -15,16 +16,17 @@
 
   <target name="clean">
     <delete dir="${build.dir}"/>
+    <delete dir="${doc.dir}"/>
   </target>
 
   <target name="prepare">
-    <mkdir dir="${build.dir}"/>
     <mkdir dir="${build.dir}"/>
   </target>
 
   <target name="compile" depends="prepare">
     <javac srcdir="${src.dir}" destdir="${build.dir}">
       <classpath refid="project.classpath"/>
+      <compilerarg value="-Xlint:unchecked"/>
     </javac>
     <copy todir="${build.dir}">
       <fileset dir="${src.dir}" includes="**/*.properties"/>
@@ -49,5 +51,12 @@
         <fileset dir="${build.dir}" includes="**/*Test.class"/>
       </batchtest>
     </junit>
+  </target>
+
+  <target name="javadoc">
+    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}">
+      <classpath refid="project.classpath"/>
+      <link href="http://java.sun.com/javase/6/docs/api/"/>
+    </javadoc>
   </target>
 </project>

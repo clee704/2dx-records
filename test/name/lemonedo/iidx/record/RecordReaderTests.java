@@ -9,9 +9,9 @@ import java.net.URISyntaxException;
 
 import name.lemonedo.util.UnaryPredicate;
 
-public class RecordReaderTests {
+class RecordReaderTests {
 
-  public static RecordReader createRecordReader(String path) {
+  static RecordReader createRecordReader(String path) {
     try {
       File psuFile = new File(
           RecordReaderTests.class.getResource("resource/" + path).toURI());
@@ -23,7 +23,7 @@ public class RecordReaderTests {
     }
   }
 
-  public static void assertRecordEquals(Record.DjLevel djLevel, int exScore,
+  static void assertRecordEquals(Record.DjLevel djLevel, int exScore,
       int just, int great, int good, int bad, int poor, int maxCombo,
       int missCount, int playCount, Record r) {
     assertNotNull(r);
@@ -39,7 +39,7 @@ public class RecordReaderTests {
     assertEquals(playCount, r.getPlayCount().toInt());
   }
 
-  public static class MatchTitle implements UnaryPredicate<Record> {
+  static class MatchTitle implements UnaryPredicate<Record> {
 
     private final String title;
 
