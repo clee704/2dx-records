@@ -7,7 +7,7 @@
   <property name="lib.dir" location="lib"/>
   <property name="release.dir" location="releases"/>
   <property name="version" value="0_30"/>
-  <property name="launch4j.dir" location="D:/app/launch4j"/>
+  <!-- <property name="launch4j.dir" location="D:/app/launch4j"/> -->
 
   <path id="project.classpath">
     <pathelement location="${build.dir}"/>
@@ -62,9 +62,9 @@
     </javadoc>
   </target>
 
-  <taskdef name="launch4j"
+  <!-- <taskdef name="launch4j"
       classname="net.sf.launch4j.ant.Launch4jTask"
-      classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar"/>
+      classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar"/> -->
 
   <target name="release-files" depends="clean, compile">
     <jar destfile="${release.dir}/2dx-record-${version}.jar" manifest="MANIFEST.MF">
@@ -73,9 +73,9 @@
     <zip destfile="${release.dir}/2dx-record-src-${version}.zip">
       <zipfileset dir="${src.dir}"/>
     </zip>
-    <launch4j configFile="launch4j-config.xml"
+    <!-- <launch4j configFile="launch4j-config.xml"
         jar="${release.dir}/2dx-record-${version}.jar"
         outfile="${release.dir}/2dx-record-${version}.exe">
-    </launch4j>
+    </launch4j> -->
   </target>
 </project>
